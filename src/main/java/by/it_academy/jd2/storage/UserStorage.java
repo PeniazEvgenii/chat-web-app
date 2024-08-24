@@ -1,5 +1,6 @@
 package by.it_academy.jd2.storage;
 
+import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.ERole;
 import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.storage.api.IUserStorage;
@@ -44,6 +45,13 @@ public class UserStorage implements IUserStorage {
     @Override
     public Map<Long, UserEntity> getAll() {
         return userMap;
+    }
+
+    public Optional<UserEntity> getUserByPassLogin (UserLoginDto userLoginDto) {
+        return userMap.values().stream()
+                .filter(user -> userLoginDto.getLogin().equals(user.getLogin()))
+                .filter(user -> userLoginDto.getPassword().equals(user.getPassword()))
+                .findFirst();
     }
 
     public static IUserStorage getInstance() {

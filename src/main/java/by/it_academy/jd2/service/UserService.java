@@ -1,7 +1,10 @@
 package by.it_academy.jd2.service;
 
 import by.it_academy.jd2.dto.UserCreateDto;
+import by.it_academy.jd2.dto.UserDto;
+import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
+import by.it_academy.jd2.mapper.MapperToUserDto;
 import by.it_academy.jd2.mapper.MapperToUserEntity;
 import by.it_academy.jd2.mapper.api.IMapper;
 import by.it_academy.jd2.service.api.IUserService;
@@ -15,12 +18,14 @@ import by.it_academy.jd2.validation.api.IValidate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class UserService implements IUserService {
     private static final IUserService INSTANCE = new UserService();
 
     private final IValidate validationForm = ValidationForm.getInstance();
     private final IMapper<UserCreateDto, UserEntity> mapperUser = MapperToUserEntity.getInstance();
+    private final IMapper<UserEntity, UserDto> mapperToUserDto = MapperToUserDto.getInstance();
     private final IUserStorage userStorage = UserStorage.getInstance();
 
     @Override
@@ -41,6 +46,12 @@ public class UserService implements IUserService {
     @Override
     public Map<Long, UserEntity> getAllUsers() {
         return userStorage.getAll();
+    }
+
+    @Override
+    public Optional<UserDto> login(UserLoginDto userLoginDto) {
+       return userStorage.getUserByPassLogin(userLoginDto)
+               .map(mapperToUserDto::mapFrom);
     }
 
 

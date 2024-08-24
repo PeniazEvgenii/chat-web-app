@@ -25,11 +25,15 @@
     </form>
 
     <c:if test="${param.error != null}">
-        <div style="color: red; font-size: 14pt">
+        <div style="color: red; font-size: 15pt">
             <span>Login or password is invalid</span>
         </div>
     </c:if>
-    <br>
+     <c:if test="${not empty requestScope.access}">
+         <div style="color: ForestGreen; font-size: 15pt">
+             <span>${requestScope.access}</span>
+         </div>
+     </c:if>
 
     <h3>Если у вас нет учетной записи, вам необходимо пройти регистрацию</h3>
 

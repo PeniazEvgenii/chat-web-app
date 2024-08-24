@@ -30,8 +30,9 @@
 
         <br>
         <br>
+
         <c:if test="${not empty requestScope.errors}">
-            <div style="color: red; font-size: 13pt">
+            <div style="color: red; font-size: 14pt">
                 <c:forEach var="error" items="${requestScope.errors}">
                     <span>${error.description}</span>
                     <br>
