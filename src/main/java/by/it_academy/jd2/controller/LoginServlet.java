@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static by.it_academy.jd2.controller.RegistrationServlet.PARAMETER_LOGIN;
 import static by.it_academy.jd2.controller.RegistrationServlet.PARAMETER_PASSWORD;

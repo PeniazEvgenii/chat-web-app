@@ -44,7 +44,43 @@
         <input type="radio" name="singer" value="Eminem4" required class="w3-input w3-animate-input w3-border w3-round-large" style="width: 10%">Eminem4
         <br>
 
+    <details>
+        <summary>Легенда</summary>
+        <p>Раскрывающийся текст</p>
+    </details>
+    <div id="info" style="padding-top:15px;">
+        ЗДЕСЬ ПИШЕМ ИЛИ ВСТАВЛЯЕМ ТЕКСТ, КОТОРЫЙ ДОЛЖЕН БЫТЬ ПО УМОЛЧАНИЮ СКРЫТЫМ И ПОКАЗЫВАТЬСЯ (РАСКРЫВАТЬСЯ) ТОЛЬКО ПРИ КЛИКЕ НА ССЫЛКУ "ПОДРОБНЕЕ", СО ВСЕМИ НУЖНЫМИ ТЕГАМИ.
+    </div>
 
+
+    <p style="cursor:pointer" onClick="expandit(this)">Показать/скрыть детальную информацию о о блоке текста №1</p>
+    <span style="display:none" style=&{head};>
+Здесь пишем/вставляем блок текста №1
+</span>
+    <p style="cursor:pointer" onClick="expandit(this)">Показать/скрыть детальную информацию о о блоке текста №2</p>
+    <span style="display:none" style=&{head};>
+Здесь пишем/вставляем блок текста №2
+</span><p style="cursor:pointer" onClick="expandit(this)">Показать/скрыть детальную информацию о о блоке текста №3</p>
+    <span style="display:block" style=&{head};>
+<span>Здесь пишем/вставляем блок текста №3</span><br>
+        <span>Здесь пишем/вставляем блок текста №3</span><br>
+        <span>Здесь пишем/вставляем блок текста №3</span><br>
+
+</span><p style="cursor:pointer" onClick="expandit(this)">Показать/скрыть детальную информацию о о блоке текста №4</p>
+    <span style="display:none" style=&{head};>
+Здесь пишем/вставляем блок текста №4
+</span>
+
+    <details open>
+        <summary>
+            <img src="images/arrow-down.svg" alt="">
+            Сроки доставки
+        </summary>
+        <p>
+            Если закажите экспресс-доставку голубями, она займёт от 6 до 8 дней.
+            Обычная доставка улиткой занимает примерно 20 дней.
+        </p>
+    </details>
     <p><b>Выберите ваши любимые жанры</b></p>
     <input type="checkbox" name="janre" value="rock">rock1
     <input type="checkbox" name="janre" value="rock2">rock2
