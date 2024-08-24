@@ -43,7 +43,7 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public Map<Long, UserEntity> getAll() {
-        return null;
+        return userMap;
     }
 
     public static IUserStorage getInstance() {

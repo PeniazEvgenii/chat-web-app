@@ -11,7 +11,7 @@
     <form action="${pageContext.request.contextPath}/api/user" method="post">
 
         <p><label for="loginID"> Логин:</label>
-            <input type="text" name="login" id="loginID"  style="margin-left: 70px">
+            <input type="text" name="login" id="loginID" value="${requestScope.enterLogin}"  style="margin-left: 70px">
         </p>
 
         <p><label for="passwordId"> Пароль:

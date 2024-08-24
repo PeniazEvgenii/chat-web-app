@@ -5,10 +5,10 @@ import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.mapper.api.IMapper;
 import by.it_academy.jd2.util.DateFormatUtil;
 
-public class MapperUser implements IMapper<UserCreateDto, UserEntity> {
-    public static final IMapper<UserCreateDto, UserEntity> INSTANCE = new  MapperUser();
+public class MapperToUserEntity implements IMapper<UserCreateDto, UserEntity> {
+    public static final IMapper<UserCreateDto, UserEntity> INSTANCE = new MapperToUserEntity();
 
-    private MapperUser(){}
+    private MapperToUserEntity(){}
 
     @Override
     public UserEntity mapFrom(UserCreateDto userCreateDto) {

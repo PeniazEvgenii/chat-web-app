@@ -15,14 +15,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet(urlPatterns = "/api/user")
+import static by.it_academy.jd2.util.PathUtil.*;
+
+@WebServlet(urlPatterns = REGISTRATION_SERVLET)
 public class RegistrationServlet extends HttpServlet {
     public static final String PARAMETER_LOGIN = "login";
     public static final String PARAMETER_PASSWORD = "password";
     public static final String PARAMETER_NAME = "name";
     public static final String PARAMETER_BIRTHDAY = "birthday";
     public static final String ATTRIBUTE_ERRORS = "errors";
-    public static final String REGISTRATION_JSP = "signUp";
+    public static final String ATTRIBUTE_ENTER_LOGIN = "enterLogin";
+
 
     private final IUserService userService = UserService.getInstance();
 
@@ -45,8 +48,10 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userCreateDto);
+            resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);
         } catch (ValidationException e) {
             req.setAttribute(ATTRIBUTE_ERRORS, e.getErrors());
+            req.setAttribute(ATTRIBUTE_ENTER_LOGIN, req.getParameter(PARAMETER_LOGIN));
             doGet(req, resp);
         }
     }

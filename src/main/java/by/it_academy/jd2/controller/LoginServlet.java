@@ -9,11 +9,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/api/login")
+import static by.it_academy.jd2.util.PathUtil.LOGIN_JSP;
+import static by.it_academy.jd2.util.PathUtil.LOGIN_SERVLET;
+
+@WebServlet(urlPatterns = LOGIN_SERVLET)
 public class LoginServlet extends HttpServlet {
     public static final String PARAMETER_LOGIN = "login";
     public static final String PARAMETER_PASSWORD = "password";
-    public static final String LOGIN_JSP = "signIn";
+
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
