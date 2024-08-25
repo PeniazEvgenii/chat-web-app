@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller;
+package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
@@ -12,16 +12,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import static by.it_academy.jd2.controller.RegistrationServlet.PARAMETER_LOGIN;
-import static by.it_academy.jd2.controller.RegistrationServlet.PARAMETER_PASSWORD;
+import static by.it_academy.jd2.controller.servlet.RegistrationServlet.PARAMETER_LOGIN;
+import static by.it_academy.jd2.controller.servlet.RegistrationServlet.PARAMETER_PASSWORD;
 import static by.it_academy.jd2.util.PathUtil.LOGIN_JSP;
 import static by.it_academy.jd2.util.PathUtil.LOGIN_SERVLET;
 
 @WebServlet(urlPatterns = LOGIN_SERVLET)
 public class LoginServlet extends HttpServlet {
-    public static final String SESSION_USER = "user";
+    public static final String SESSION_ATTRIBUTE_USER = "user";
 
     private final IUserService userService = UserService.getInstance();
 
@@ -42,7 +41,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserDto userDto) {
-        req.getSession().setAttribute(SESSION_USER, userDto);
+        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userDto);
         try {
             req.setAttribute("access", "Login is successfully");
             doGet(req, resp);

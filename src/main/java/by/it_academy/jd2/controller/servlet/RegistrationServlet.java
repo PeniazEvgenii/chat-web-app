@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller;
+package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.entity.ERole;

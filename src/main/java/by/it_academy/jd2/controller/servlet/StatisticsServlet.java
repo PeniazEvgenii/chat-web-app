@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller;
+package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.StatisticDto;
 import by.it_academy.jd2.service.StatisticService;
@@ -9,13 +9,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jdk.jshell.execution.Util;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(urlPatterns = "/api/admin/statistics")
+import static by.it_academy.jd2.util.PathUtil.STATISTICS_SERVLET;
+
+@WebServlet(urlPatterns = STATISTICS_SERVLET)
 public class StatisticsServlet extends HttpServlet {
     private final IStatisticsService statisticsService = StatisticService.getInstance();
 
