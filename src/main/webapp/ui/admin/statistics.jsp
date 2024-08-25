@@ -22,7 +22,7 @@
 
 </head>
 <body>
-
+    <%@ include file="../LogOut.jsp" %>
     <h2>Статистика приложения</h2>
 
     <table>
