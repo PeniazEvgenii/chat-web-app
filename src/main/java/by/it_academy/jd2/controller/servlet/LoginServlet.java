@@ -4,6 +4,7 @@ import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.service.UserService;
 import by.it_academy.jd2.service.api.IUserService;
+import by.it_academy.jd2.service.factory.UserServiceFactory;
 import by.it_academy.jd2.util.JspUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ import static by.it_academy.jd2.util.PathUtil.LOGIN_SERVLET;
 public class LoginServlet extends HttpServlet {
     public static final String SESSION_ATTRIBUTE_USER = "user";
 
-    private final IUserService userService = UserService.getInstance();
+    private final IUserService userService = UserServiceFactory.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,7 +44,7 @@ public class LoginServlet extends HttpServlet {
     private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserDto userDto) {
         req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userDto);
         try {
-            req.setAttribute("access", "Login is successfully");
+            req.setAttribute("access", "Login is successfully");         //можно сделать проверкку на уже установленный в сессии user
             doGet(req, resp);
             //resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);          // пока на логин
         } catch (ServletException e) {

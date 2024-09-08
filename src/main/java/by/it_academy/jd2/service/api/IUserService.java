@@ -11,9 +11,8 @@ import java.util.Optional;
 public interface IUserService {
     Long create(UserCreateDto userCreateDto);
 
-    Map<Long, UserEntity> getAllUsers();
+    Map<Long, UserEntity> getAll();
 
     Optional<UserDto> login(UserLoginDto userLoginDto);
-
 
 }

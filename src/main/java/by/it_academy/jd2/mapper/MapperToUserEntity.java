@@ -6,9 +6,8 @@ import by.it_academy.jd2.mapper.api.IMapper;
 import by.it_academy.jd2.util.DateFormatUtil;
 
 public class MapperToUserEntity implements IMapper<UserCreateDto, UserEntity> {
-    public static final IMapper<UserCreateDto, UserEntity> INSTANCE = new MapperToUserEntity();
 
-    private MapperToUserEntity(){}
+    public MapperToUserEntity(){}
 
     @Override
     public UserEntity mapFrom(UserCreateDto userCreateDto) {
@@ -20,9 +19,5 @@ public class MapperToUserEntity implements IMapper<UserCreateDto, UserEntity> {
                 .setRegistrationDate(userCreateDto.getRegistrationDate())
                 .setRole(userCreateDto.getRole().name())
                 .build();
-    }
-
-    public static IMapper<UserCreateDto, UserEntity> getInstance() {
-        return INSTANCE;
     }
 }

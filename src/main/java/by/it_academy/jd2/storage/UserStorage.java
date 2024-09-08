@@ -11,11 +11,10 @@ import java.util.Map;
 import java.util.Optional;
 
 public class UserStorage implements IUserStorage {
-    public static final IUserStorage INSTANCE = new UserStorage();
 
     private final Map<Long, UserEntity> userMap = new HashMap<>();
 
-    private UserStorage() {
+    public UserStorage() {
         UserEntity admin = UserEntity.builder()
                 .setLogin("root")
                 .setPassword("root")
@@ -54,7 +53,4 @@ public class UserStorage implements IUserStorage {
                 .findFirst();
     }
 
-    public static IUserStorage getInstance() {
-        return INSTANCE;
-    }
 }

@@ -6,9 +6,8 @@ import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.mapper.api.IMapper;
 
 public class MapperToUserDto implements IMapper<UserEntity, UserDto>{
-    public static final IMapper<UserEntity, UserDto> INSTANCE = new MapperToUserDto();
 
-    private MapperToUserDto() {}
+    public MapperToUserDto() {}
 
     @Override
     public UserDto mapFrom(UserEntity userEntity) {
@@ -23,7 +22,4 @@ public class MapperToUserDto implements IMapper<UserEntity, UserDto>{
                 .build();
     }
 
-    public static IMapper<UserEntity, UserDto> getInstance() {
-        return INSTANCE;
-    }
 }

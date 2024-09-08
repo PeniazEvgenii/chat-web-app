@@ -4,6 +4,7 @@ import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.entity.ERole;
 import by.it_academy.jd2.service.UserService;
 import by.it_academy.jd2.service.api.IUserService;
+import by.it_academy.jd2.service.factory.UserServiceFactory;
 import by.it_academy.jd2.util.JspUtil;
 import by.it_academy.jd2.validation.ValidationException;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
     public static final String ATTRIBUTE_ENTER_LOGIN = "enterLogin";
 
 
-    private final IUserService userService = UserService.getInstance();
+    private final IUserService userService = UserServiceFactory.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

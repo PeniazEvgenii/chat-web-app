@@ -2,26 +2,22 @@ package by.it_academy.jd2.service;
 
 import by.it_academy.jd2.dto.StatisticDto;
 import by.it_academy.jd2.dto.UserDto;
-import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.service.api.IStatisticsService;
-import by.it_academy.jd2.storage.UserStorage;
 import by.it_academy.jd2.storage.api.IUserStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class StatisticService implements IStatisticsService {
-    private static final IStatisticsService INSTANCE = new StatisticService();
-    private final IUserStorage userStorage = UserStorage.getInstance();
+
+    private final IUserStorage userStorage;
 
     List<String> activeSession = new ArrayList<>();
 
-    private StatisticService() {}
-
-    public static IStatisticsService getInstance() {
-        return INSTANCE;
+    public StatisticService(IUserStorage userStorage) {
+        this.userStorage = userStorage;
     }
+
 
     //из листнера на сохранение
     public void saveFromSession(UserDto userDto, String sessionId) {

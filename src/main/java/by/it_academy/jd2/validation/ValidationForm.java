@@ -8,7 +8,8 @@ import by.it_academy.jd2.validation.api.IValidate;
 import java.util.List;
 
 public class ValidationForm implements IValidate {
-    private static final IValidate INSTANCE = new ValidationForm();
+
+    public ValidationForm() {}
 
     /**
      * Метод для валидации информации, переданной из формы регистрации
@@ -51,7 +52,4 @@ public class ValidationForm implements IValidate {
                 .noneMatch(user -> user.getLogin().equals(userCreateDto.getLogin()));
     }
 
-    public static IValidate getInstance() {
-        return INSTANCE;
-    }
 }

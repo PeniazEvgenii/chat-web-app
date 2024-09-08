@@ -4,14 +4,10 @@ import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.mapper.MapperToUserDto;
-import by.it_academy.jd2.mapper.MapperToUserEntity;
 import by.it_academy.jd2.mapper.api.IMapper;
 import by.it_academy.jd2.service.api.IUserService;
-import by.it_academy.jd2.storage.UserStorage;
 import by.it_academy.jd2.storage.api.IUserStorage;
 import by.it_academy.jd2.validation.ValidationException;
-import by.it_academy.jd2.validation.ValidationForm;
 import by.it_academy.jd2.validation.ValidationResult;
 import by.it_academy.jd2.validation.api.IValidate;
 
@@ -21,16 +17,25 @@ import java.util.Map;
 import java.util.Optional;
 
 public class UserService implements IUserService {
-    private static final IUserService INSTANCE = new UserService();
 
-    private final IValidate validationForm = ValidationForm.getInstance();
-    private final IMapper<UserCreateDto, UserEntity> mapperUser = MapperToUserEntity.getInstance();
-    private final IMapper<UserEntity, UserDto> mapperToUserDto = MapperToUserDto.getInstance();
-    private final IUserStorage userStorage = UserStorage.getInstance();
+    private final IValidate validationForm;
+    private final IMapper<UserCreateDto, UserEntity> mapperUser;
+    private final IMapper<UserEntity, UserDto> mapperToUserDto;
+    private final IUserStorage userStorage;
+
+    public UserService(IValidate validationForm,
+                       IMapper<UserCreateDto, UserEntity> mapperUser,
+                       IMapper<UserEntity, UserDto> mapperToUserDto,
+                       IUserStorage userStorage) {
+        this.validationForm = validationForm;
+        this.mapperUser = mapperUser;
+        this.mapperToUserDto = mapperToUserDto;
+        this.userStorage = userStorage;
+    }
 
     @Override
     public Long create(UserCreateDto userCreateDto) {
-        List<UserEntity> allUsers = new ArrayList<>(getAllUsers().values());
+        List<UserEntity> allUsers = new ArrayList<>(getAll().values());
 
         ValidationResult validationResult = validationForm.isValid(userCreateDto, allUsers);
         if (!validationResult.checkErrorEmpty()) {
@@ -44,7 +49,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Map<Long, UserEntity> getAllUsers() {
+    public Map<Long, UserEntity> getAll() {
         return userStorage.getAll();
     }
 
@@ -55,7 +60,5 @@ public class UserService implements IUserService {
     }
 
 
-    public static IUserService getInstance() {
-        return INSTANCE;
-    }
+
 }
