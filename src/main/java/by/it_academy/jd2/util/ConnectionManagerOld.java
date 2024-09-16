@@ -5,10 +5,10 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public final class ConnectionManager {
+@Deprecated
+public final class ConnectionManagerOld {
     private static final String URL_KEY = "db.url";
     private static final String USERNAME_KEY = "db.username";
     private static final String PASSWORD_KEY = "db.password";
@@ -23,7 +23,7 @@ public final class ConnectionManager {
         load();
     }
 
-    private ConnectionManager() {}
+    private ConnectionManagerOld() {}
 
     /**
      * Для получения доступа к базе данных используются параметры (URL, username, password)
