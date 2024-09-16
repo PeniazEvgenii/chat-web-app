@@ -1,15 +1,17 @@
 package by.it_academy.jd2.entity;
 
+import by.it_academy.jd2.dto.UserForMassageEntity;
+
 import java.time.OffsetDateTime;
 
-public class MessageEntity {
+public class MessageEntity2 {
     private Long id;
     private final OffsetDateTime createAt;
-    private final UserEntity userFrom;
-    private final UserEntity userTo;
+    private final UserForMassageEntity userFrom;
+    private final UserForMassageEntity userTo;
     private final String text;
 
-    private MessageEntity(Long id,OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String text) {
+    private MessageEntity2(Long id, OffsetDateTime createAt, UserForMassageEntity userFrom, UserForMassageEntity userTo, String text) {
         this.id = id;
         this.createAt = createAt;
         this.userFrom = userFrom;
@@ -25,11 +27,11 @@ public class MessageEntity {
         return createAt;
     }
 
-    public UserEntity getUserFrom() {
+    public UserForMassageEntity getUserFrom() {
         return userFrom;
     }
 
-    public UserEntity getUserTo() {
+    public UserForMassageEntity getUserTo() {
         return userTo;
     }
 
@@ -48,8 +50,8 @@ public class MessageEntity {
     public static class MessageEntityBuilder {
         private Long id;
         private OffsetDateTime createAt;
-        private UserEntity userFrom;
-        private UserEntity userTo;
+        private UserForMassageEntity userFrom;
+        private UserForMassageEntity userTo;
         private String text;
 
         private MessageEntityBuilder() {
@@ -65,12 +67,12 @@ public class MessageEntity {
             return this;
         }
 
-        public MessageEntityBuilder setUserFrom(UserEntity userFrom) {
+        public MessageEntityBuilder setUserFrom(UserForMassageEntity userFrom) {
             this.userFrom = userFrom;
             return this;
         }
 
-        public MessageEntityBuilder setUserTo(UserEntity userTo) {
+        public MessageEntityBuilder setUserTo(UserForMassageEntity userTo) {
             this.userTo = userTo;
             return this;
         }
@@ -79,8 +81,8 @@ public class MessageEntity {
             this.text = text;
             return this;
         }
-        public MessageEntity build() {
-            return new MessageEntity(id, createAt, userFrom, userTo, text);
+        public MessageEntity2 build() {
+            return new MessageEntity2(id, createAt, userFrom, userTo, text);
         }
     }
 }

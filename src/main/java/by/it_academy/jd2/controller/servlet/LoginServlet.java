@@ -2,10 +2,8 @@ package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
-import by.it_academy.jd2.service.UserService;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
-import by.it_academy.jd2.util.JspUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,8 +14,7 @@ import java.io.IOException;
 
 import static by.it_academy.jd2.controller.servlet.RegistrationServlet.PARAMETER_LOGIN;
 import static by.it_academy.jd2.controller.servlet.RegistrationServlet.PARAMETER_PASSWORD;
-import static by.it_academy.jd2.util.PathUtil.LOGIN_JSP;
-import static by.it_academy.jd2.util.PathUtil.LOGIN_SERVLET;
+import static by.it_academy.jd2.util.PathUtil.*;
 
 @WebServlet(urlPatterns = LOGIN_SERVLET)
 public class LoginServlet extends HttpServlet {
@@ -27,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(JspUtil.getPath(LOGIN_JSP)).forward(req, resp);
+        req.getRequestDispatcher(getPathJsp(LOGIN_JSP)).forward(req, resp);
     }
 
     @Override

@@ -6,6 +6,7 @@ import by.it_academy.jd2.util.DateFormatUtil;
 import by.it_academy.jd2.validation.api.IValidate;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ValidationForm implements IValidate {
 
@@ -17,9 +18,9 @@ public class ValidationForm implements IValidate {
      * @return ValidationResult результат проверки корректности данных 
      */
     @Override
-    public ValidationResult isValid(UserCreateDto userCreateDto, List<UserEntity> allUsers) {
+    public ValidationResult isValid(UserCreateDto userCreateDto, UserEntity userByLogin) {
         ValidationResult validationResult = new ValidationResult();
-        if(!checkUniqueUser(userCreateDto, allUsers)) {
+        if(userByLogin != null) {
             validationResult.addError(new Error("not_unique_login","This login already exists",
                     "Пользователь с таким логином уже существует"));
         }
@@ -47,9 +48,5 @@ public class ValidationForm implements IValidate {
         return validationResult;
     }
 
-    private boolean checkUniqueUser(UserCreateDto userCreateDto, List<UserEntity> allUsers) {
-        return allUsers.stream()
-                .noneMatch(user -> user.getLogin().equals(userCreateDto.getLogin()));
-    }
 
 }

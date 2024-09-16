@@ -2,10 +2,9 @@ package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.entity.ERole;
-import by.it_academy.jd2.service.UserService;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
-import by.it_academy.jd2.util.JspUtil;
+import by.it_academy.jd2.util.PathUtil;
 import by.it_academy.jd2.validation.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,7 +32,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher(JspUtil.getPath(REGISTRATION_JSP)).forward(req, resp);
+        req.getRequestDispatcher(getPathJsp(REGISTRATION_JSP)).forward(req, resp);
     }
 
     @Override

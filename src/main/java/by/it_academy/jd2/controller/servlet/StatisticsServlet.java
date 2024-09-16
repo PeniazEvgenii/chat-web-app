@@ -1,10 +1,8 @@
 package by.it_academy.jd2.controller.servlet;
 
 import by.it_academy.jd2.dto.StatisticDto;
-import by.it_academy.jd2.service.StatisticService;
 import by.it_academy.jd2.service.api.IStatisticsService;
 import by.it_academy.jd2.service.factory.StatisticServiceFactory;
-import by.it_academy.jd2.util.JspUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static by.it_academy.jd2.util.PathUtil.STATISTICS_SERVLET;
+import static by.it_academy.jd2.util.PathUtil.getPathJsp;
 
 @WebServlet(urlPatterns = STATISTICS_SERVLET)
 public class StatisticsServlet extends HttpServlet {
@@ -32,6 +31,6 @@ public class StatisticsServlet extends HttpServlet {
         test.put("Количество сообщений отправленных в приложении", statisticDto.getCountMessage());
         req.setAttribute("statistics", test);
 
-        req.getRequestDispatcher(JspUtil.getPath("admin/statistics")).forward(req, resp);
+        req.getRequestDispatcher(getPathJsp("admin/statistics")).forward(req, resp);
     }
 }

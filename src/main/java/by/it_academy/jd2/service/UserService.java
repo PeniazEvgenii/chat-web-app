@@ -1,62 +1,57 @@
 package by.it_academy.jd2.service;
 
+import by.it_academy.jd2.dao.api.IUserDao;
 import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.mapper.api.IMapper;
+import by.it_academy.jd2.mapper.api.IUserMapper;
 import by.it_academy.jd2.service.api.IUserService;
-import by.it_academy.jd2.storage.api.IUserStorage;
 import by.it_academy.jd2.validation.ValidationException;
 import by.it_academy.jd2.validation.ValidationResult;
 import by.it_academy.jd2.validation.api.IValidate;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class UserService implements IUserService {
 
     private final IValidate validationForm;
-    private final IMapper<UserCreateDto, UserEntity> mapperUser;
-    private final IMapper<UserEntity, UserDto> mapperToUserDto;
-    private final IUserStorage userStorage;
+    private final IUserMapper userMapper;
+    private final IUserDao userStorage;
 
     public UserService(IValidate validationForm,
-                       IMapper<UserCreateDto, UserEntity> mapperUser,
-                       IMapper<UserEntity, UserDto> mapperToUserDto,
-                       IUserStorage userStorage) {
+                       IUserMapper userMapper,
+                       IUserDao userStorage) {
         this.validationForm = validationForm;
-        this.mapperUser = mapperUser;
-        this.mapperToUserDto = mapperToUserDto;
+        this.userMapper = userMapper;
         this.userStorage = userStorage;
     }
 
     @Override
     public Long create(UserCreateDto userCreateDto) {
-        List<UserEntity> allUsers = new ArrayList<>(getAll().values());
+        Optional<UserEntity> userByLogin = userStorage.getUserByLogin(userCreateDto.getLogin());
 
-        ValidationResult validationResult = validationForm.isValid(userCreateDto, allUsers);
+        ValidationResult validationResult = validationForm.isValid(userCreateDto, userByLogin.orElse(null));
         if (!validationResult.checkErrorEmpty()) {
             throw new ValidationException(validationResult.getErrors());
         }
 
-        UserEntity userEntity = mapperUser.mapFrom(userCreateDto);
+        UserEntity userEntity = userMapper.mapDtoToEntity(userCreateDto);
 
-        return userStorage.create(userEntity);
+        return userStorage.create(userEntity).getId();   //надо на сущность поменять
 
     }
 
     @Override
-    public Map<Long, UserEntity> getAll() {
+    public List<UserEntity> getAll() {
         return userStorage.getAll();
     }
 
     @Override
     public Optional<UserDto> login(UserLoginDto userLoginDto) {
        return userStorage.getUserByPassLogin(userLoginDto)
-               .map(mapperToUserDto::mapFrom);
+               .map(userMapper::mapEntityToDto);
     }
 
 

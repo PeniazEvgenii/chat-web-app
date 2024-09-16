@@ -5,7 +5,7 @@ import by.it_academy.jd2.entity.ERole;
 import java.time.LocalDate;
 
 public class UserDto {
-    private Long id;
+    private final Long id;
     private final String login;
     private final String password;
     private final String name;
@@ -25,10 +25,6 @@ public class UserDto {
 
     public static UserLoginDtoBuilder builder() {
         return new UserLoginDtoBuilder();
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLogin() {
