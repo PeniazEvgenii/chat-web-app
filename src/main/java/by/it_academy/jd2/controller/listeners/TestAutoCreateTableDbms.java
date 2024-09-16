@@ -1,6 +1,6 @@
 package by.it_academy.jd2.controller.listeners;
 
-import by.it_academy.jd2.util.ConnectionManager;
+import by.it_academy.jd2.util.ConnectionManagerOld;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
@@ -12,7 +12,7 @@ public class TestAutoCreateTableDbms implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        try (Connection connection = ConnectionManager.open()) {
+        try (Connection connection = ConnectionManagerOld.open()) {
             createTableUser(connection);
             addAdminToTable(connection);
         } catch (SQLException e) {
