@@ -1,12 +1,12 @@
 package by.it_academy.jd2.dao;
 
 import by.it_academy.jd2.dao.api.IUserDao;
+import by.it_academy.jd2.dao.connection.api.IConnectionManager;
 import by.it_academy.jd2.dao.factory.UserDaoFactory;
 import by.it_academy.jd2.dto.UserForMassageEntity;
 import by.it_academy.jd2.entity.MessageEntity;
 import by.it_academy.jd2.entity.MessageEntity2;
 import by.it_academy.jd2.dao.exception.DaoException;
-import by.it_academy.jd2.util.ConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDao {
-    IUserDao userDao = UserDaoFactory.getInstance();   // может и не надо
+    private final IConnectionManager connectionManager;
 
-    public MessageDao() {}
+    IUserDao userDao = UserDaoFactory.getInstance();   // может и не надо  интерфейс подавай!!!!
+
+    public MessageDao(IConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+    }
 
     private static final String INSERT_MESSAGE_SQL = "INSERT INTO app.messages (create_at, user_id_from, user_id_to, body)" +
             " VALUES (?, ?, ?, ?) RETURNING id";
@@ -32,7 +36,7 @@ public class MessageDao {
     private static final String GET_MESSAGE_COUNT_SQL = "SELECT COUNT(id) as count_message FROM app.messages";
 
     public MessageEntity create(MessageEntity message) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MESSAGE_SQL)) {
             preparedStatement.setObject(1, message.getCreateAt());
             preparedStatement.setLong(2, message.getUserFrom().getId());
@@ -52,7 +56,7 @@ public class MessageDao {
     }
 
     public MessageEntity2 create(MessageEntity2 message) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MESSAGE_SQL)) {
             preparedStatement.setObject(1, message.getCreateAt());
             preparedStatement.setLong(2, message.getUserFrom().getId());
@@ -72,7 +76,7 @@ public class MessageDao {
     }
 
     public List<MessageEntity> getByUserTo(Long userToId) {          //это сообщение мне, себя знаю в сессии id у аттрибута
-        try (Connection connection = ConnectionManager.open();       //сильно жирно данных достал
+        try (Connection connection = connectionManager.open();       //сильно жирно данных достал
              PreparedStatement preparedStatement = connection.prepareStatement(GET_MESSAGE_BY_LOGIN_SQL)) {
             preparedStatement.setObject(1, userToId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -94,7 +98,7 @@ public class MessageDao {
     }
 
     public List<MessageEntity2> getByUserTo2(UserForMassageEntity userTo) {          // это достаю обрезок Usera
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_MESSAGE_BY_LOGIN_SQL2)) {
             preparedStatement.setObject(1, userTo.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -118,7 +122,7 @@ public class MessageDao {
     }
 
     public Long getCount() {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_MESSAGE_COUNT_SQL)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             Long countMessage = null;

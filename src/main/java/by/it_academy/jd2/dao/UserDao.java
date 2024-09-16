@@ -1,10 +1,10 @@
 package by.it_academy.jd2.dao;
 
 import by.it_academy.jd2.dao.api.IUserDao;
+import by.it_academy.jd2.dao.connection.api.IConnectionManager;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.dao.exception.DaoException;
-import by.it_academy.jd2.util.ConnectionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,12 +24,15 @@ public class UserDao implements IUserDao {
     private static final String GET_USER_BY_LOG = "SELECT id, login, password, name, birth_date, registration_date, role " +
             "FROM app.users WHERE login = ?";
 
-    public UserDao() {
+    private final IConnectionManager connectionManager;
+
+    public UserDao(IConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     @Override
     public UserEntity create(UserEntity user) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER_SQL, Statement.RETURN_GENERATED_KEYS)
         ) {
             preparedStatement.setString(1, user.getLogin());
@@ -55,7 +58,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean delete(Long id) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_BY_ID)
         ) {
             preparedStatement.setLong(1, id);
@@ -68,7 +71,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public Optional<UserEntity> getById(Long id) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID_SQL)
         ) {
             preparedStatement.setLong(1, id);
@@ -85,7 +88,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public List<UserEntity> getAll() {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_USER_SQL);
         ) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -102,7 +105,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public Optional<UserEntity> getUserByPassLogin(UserLoginDto userLoginDto) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOG_PASS)
         ) {
             preparedStatement.setString(1, userLoginDto.getLogin());
@@ -120,7 +123,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public Optional<UserEntity> getUserByLogin(String login) {
-        try (Connection connection = ConnectionManager.open();
+        try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOG)
         ) {
             preparedStatement.setString(1, login);
