@@ -1,14 +1,14 @@
 package by.it_academy.jd2.service;
 
 import by.it_academy.jd2.dto.StatisticDto;
-import by.it_academy.jd2.dto.UserDto;
+import by.it_academy.jd2.dto.UserReadDto;
 import by.it_academy.jd2.service.api.IStatisticsService;
 import by.it_academy.jd2.storage.api.IUserStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatisticService implements IStatisticsService {
+public class StatisticService implements IStatisticsService {            // переделать
 
     private final IUserStorage userStorage;
 
@@ -20,8 +20,8 @@ public class StatisticService implements IStatisticsService {
 
 
     //из листнера на сохранение
-    public void saveFromSession(UserDto userDto, String sessionId) {
-        String login = userDto.getLogin();
+    public void saveFromSession(UserReadDto userReadDto, String sessionId) {
+        String login = userReadDto.getLogin();
         activeSession.add(sessionId);
     }
 

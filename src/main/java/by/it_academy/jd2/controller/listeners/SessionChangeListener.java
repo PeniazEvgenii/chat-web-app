@@ -1,6 +1,6 @@
 package by.it_academy.jd2.controller.listeners;
 
-import by.it_academy.jd2.dto.UserDto;
+import by.it_academy.jd2.dto.UserReadDto;
 import by.it_academy.jd2.service.api.IStatisticsService;
 import by.it_academy.jd2.service.factory.StatisticServiceFactory;
 import jakarta.servlet.annotation.WebListener;
@@ -16,10 +16,10 @@ public class SessionChangeListener implements HttpSessionAttributeListener {
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
         if(event.getName().equals(SESSION_ATTRIBUTE_USER)) {
-            UserDto userDto = (UserDto) event.getValue();
+            UserReadDto userReadDto = (UserReadDto) event.getValue();
             event.getSession().getAttributeNames();  //delete
             String sessionId = event.getSession().getId();
-            statisticsService.saveFromSession(userDto, sessionId);
+            statisticsService.saveFromSession(userReadDto, sessionId);
         }
     }
 

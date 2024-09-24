@@ -1,15 +1,16 @@
 package by.it_academy.jd2.entity;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 public class MessageEntity {
-    private Long id;
+    private UUID id;
     private final OffsetDateTime createAt;
     private final UserEntity userFrom;
     private final UserEntity userTo;
     private final String text;
 
-    private MessageEntity(Long id,OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String text) {
+    private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String text) {
         this.id = id;
         this.createAt = createAt;
         this.userFrom = userFrom;
@@ -37,16 +38,16 @@ public class MessageEntity {
         return text;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
     public static class MessageEntityBuilder {
-        private Long id;
+        private UUID id;
         private OffsetDateTime createAt;
         private UserEntity userFrom;
         private UserEntity userTo;
@@ -55,7 +56,7 @@ public class MessageEntity {
         private MessageEntityBuilder() {
         }
 
-        public MessageEntityBuilder setId(Long id) {
+        public MessageEntityBuilder setId(UUID id) {
             this.id = id;
             return this;
         }

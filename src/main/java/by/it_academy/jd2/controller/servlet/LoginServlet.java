@@ -1,6 +1,6 @@
 package by.it_academy.jd2.controller.servlet;
 
-import by.it_academy.jd2.dto.UserDto;
+import by.it_academy.jd2.dto.UserReadDto;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
@@ -38,12 +38,12 @@ public class LoginServlet extends HttpServlet {
         );
     }
 
-    private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserDto userDto) {
-        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userDto);
+    private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserReadDto userReadDto) {
+        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userReadDto);
         try {
             req.setAttribute("access", "Login is successfully");         //можно сделать проверкку на уже установленный в сессии user
             doGet(req, resp);
-            //resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);          // пока на логин
+            //resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);          // пока на логин, а так можно избавиться от exception
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

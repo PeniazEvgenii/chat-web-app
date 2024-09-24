@@ -1,23 +1,28 @@
 package by.it_academy.jd2.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class UserEntity {
-    private Long id;
+    private UUID id;
     private final String login;
     private final String password;
     private final String name;
     private final LocalDate birthDate;
-    private final LocalDate registrationDate;
+    private final LocalDateTime registrationAt;
+    private final LocalDateTime updateAt;
     private final String role;
 
-    private UserEntity(Long id, String login, String password, String name, LocalDate birthDate, LocalDate registrationDate, String role) {
+    private UserEntity(UUID id, String login, String password, String name, LocalDate birthDate,
+                       LocalDateTime registrationAt, LocalDateTime updateAt, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
-        this.registrationDate = registrationDate;
+        this.registrationAt = registrationAt;
+        this.updateAt = updateAt;
         this.role = role;
     }
 
@@ -25,7 +30,7 @@ public class UserEntity {
         return new UserEntityBuilder();
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -45,31 +50,36 @@ public class UserEntity {
         return birthDate;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getRegistrationAt() {
+        return registrationAt;
+    }
+
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
     }
 
     public String getRole() {
         return role;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
     public static class UserEntityBuilder {
-        private Long id;
+        private UUID id;
         private String login;
         private String password;
         private String name;
         private LocalDate birthDate;
-        private LocalDate registrationDate;
+        private LocalDateTime registrationAt;
+        private LocalDateTime updateAt;
         private String role;
 
         private UserEntityBuilder() {
         }
 
-        public UserEntityBuilder setId(Long id) {
+        public UserEntityBuilder setId(UUID id) {
             this.id = id;
             return this;
         }
@@ -94,8 +104,13 @@ public class UserEntity {
             return this;
         }
 
-        public UserEntityBuilder setRegistrationDate(LocalDate registrationDate) {
-            this.registrationDate = registrationDate;
+        public UserEntityBuilder setRegistrationAt(LocalDateTime registrationAt) {
+            this.registrationAt = registrationAt;
+            return this;
+        }
+
+        public UserEntityBuilder setUpdateAt(LocalDateTime updateAt) {
+            this.updateAt = updateAt;
             return this;
         }
 
@@ -105,7 +120,7 @@ public class UserEntity {
         }
 
         public UserEntity build() {
-            return new UserEntity(id, login, password, name, birthDate, registrationDate, role);
+            return new UserEntity(id, login, password, name, birthDate, registrationAt, updateAt,role);
         }
     }
 }

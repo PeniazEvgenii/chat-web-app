@@ -4,7 +4,6 @@ import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.entity.ERole;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
-import by.it_academy.jd2.util.PathUtil;
 import by.it_academy.jd2.validation.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import static by.it_academy.jd2.util.PathUtil.*;
 
@@ -25,7 +23,6 @@ public class RegistrationServlet extends HttpServlet {
     public static final String PARAMETER_BIRTHDAY = "birthday";
     public static final String ATTRIBUTE_ERRORS = "errors";
     public static final String ATTRIBUTE_ENTER_LOGIN = "enterLogin";
-
 
     private final IUserService userService = UserServiceFactory.getInstance();
 
@@ -42,7 +39,6 @@ public class RegistrationServlet extends HttpServlet {
                 .setPassword(req.getParameter(PARAMETER_PASSWORD))
                 .setName(req.getParameter(PARAMETER_NAME))
                 .setBirthDate(req.getParameter(PARAMETER_BIRTHDAY))
-                .setRegisterDate(LocalDate.now())
                 .setRole(ERole.USER)
                 .build();
 

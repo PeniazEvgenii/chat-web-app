@@ -1,6 +1,7 @@
 package by.it_academy.jd2.validation;
 
 import by.it_academy.jd2.dto.UserCreateDto;
+import by.it_academy.jd2.dto.UserReadDto;
 import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.util.DateFormatUtil;
 import by.it_academy.jd2.validation.api.IValidate;
@@ -9,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ValidationForm implements IValidate {
+    private static final int MAX_LENGTH_LOGIN = 64;
+    private static final int MAX_LENGTH_PASSWORD = 64;
 
     public ValidationForm() {}
 
@@ -18,7 +21,7 @@ public class ValidationForm implements IValidate {
      * @return ValidationResult результат проверки корректности данных 
      */
     @Override
-    public ValidationResult isValid(UserCreateDto userCreateDto, UserEntity userByLogin) {
+    public ValidationResult isValid(UserCreateDto userCreateDto, UserReadDto userByLogin) {
         ValidationResult validationResult = new ValidationResult();
         if(userByLogin != null) {
             validationResult.addError(new Error("not_unique_login","This login already exists",
@@ -43,6 +46,16 @@ public class ValidationForm implements IValidate {
         if(!DateFormatUtil.isValidDate(userCreateDto.getBirthDate())) {
             validationResult.addError(new Error("invalid_birthDate","BirthDate is incorrect",
                     "Дата рождения некорректна"));
+        }
+
+        if(userCreateDto.getLogin().length() > MAX_LENGTH_LOGIN) {
+            validationResult.addError(new Error("invalid_length_login","Login length is no more than 64 characters",
+                    "Длина логина должна превышать 64 символа"));
+        }
+
+        if(userCreateDto.getPassword().length() > MAX_LENGTH_PASSWORD) {
+            validationResult.addError(new Error("invalid_length_password","Password length is no more than 64 characters",
+                    "Длина пароля должна превышать 64 символа"));
         }
 
         return validationResult;

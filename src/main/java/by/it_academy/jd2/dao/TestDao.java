@@ -7,22 +7,19 @@ import by.it_academy.jd2.entity.MessageEntity2;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class TestDao {
     public static void main(String[] args) {
         MessageDao messageDao = MessageDaoFactory.getInstance();
-//        List<MessageEntity2> byUserTo2 = messageDao.getByUserTo2(2L);
-//        byUserTo2.forEach(m -> System.out.println(m.getUserTo()));
-        System.out.println(messageDao.getCount());
 
-        List<MessageEntity> byUserTo = messageDao.getByUserTo(2L);
+        List<MessageEntity> byUserTo = messageDao.getByUserTo(UUID.fromString("11350b5b-5d01-4812-8010-1be53acb47f3"));
         for (MessageEntity messageEntity : byUserTo) {
-            System.out.println(messageEntity.getUserFrom().getLogin());
-            System.out.print("    ");
-            System.out.println(messageEntity.getUserTo().getLogin());
-            System.out.println();
+            System.out.println(messageEntity.getUserTo() +"  " + messageEntity.getUserFrom());
         }
-
+        System.out.println(byUserTo);
 
     }
+
+
 }

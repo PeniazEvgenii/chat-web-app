@@ -1,6 +1,6 @@
 package by.it_academy.jd2.controller.filter;
 
-import by.it_academy.jd2.dto.UserDto;
+import by.it_academy.jd2.dto.UserReadDto;
 import by.it_academy.jd2.entity.ERole;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -32,15 +32,14 @@ public class AdminSecurrityFilter implements Filter {
 
     private boolean checkAdminPrivileges(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        boolean result = false;
 
         if(session != null) {
-            UserDto user = (UserDto) session.getAttribute(SESSION_ATTRIBUTE_USER);
+            UserReadDto user = (UserReadDto) session.getAttribute(SESSION_ATTRIBUTE_USER);
             if(user != null) {
-               result = user.getRole().name().equalsIgnoreCase(adminRole);
+               return user.getRole().name().equalsIgnoreCase(adminRole);
             }
         }
 
-        return result;
+        return false;
     }
 }

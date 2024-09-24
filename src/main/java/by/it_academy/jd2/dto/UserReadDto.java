@@ -3,23 +3,27 @@ package by.it_academy.jd2.dto;
 import by.it_academy.jd2.entity.ERole;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-public class UserDto {
-    private final Long id;
+public class UserReadDto {
+    private final UUID id;
     private final String login;
     private final String password;
     private final String name;
     private final LocalDate birthDate;
-    private final LocalDate registrationDate;
+    private final LocalDateTime registrationAt;
+    private final LocalDateTime updateAt;
     private final ERole role;
 
-    private UserDto(Long id, String login, String password, String name, LocalDate birthDate, LocalDate registrationDate, ERole role) {
+    private UserReadDto(UUID id, String login, String password, String name, LocalDate birthDate, LocalDateTime registrationAt, LocalDateTime updateAt, ERole role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
-        this.registrationDate = registrationDate;
+        this.registrationAt = registrationAt;
+        this.updateAt = updateAt;
         this.role = role;
     }
 
@@ -43,31 +47,36 @@ public class UserDto {
         return birthDate;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getRegistrationAt() {
+        return registrationAt;
+    }
+
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
     }
 
     public ERole getRole() {
         return role;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
     public static class UserLoginDtoBuilder {
-        private Long id;
+        private UUID id;
         private String login;
         private String password;
         private String name;
         private LocalDate birthDate;
-        private LocalDate registrationDate;
+        private LocalDateTime registrationAt;
+        private LocalDateTime updateAt;
         private ERole role;
 
         private UserLoginDtoBuilder() {
         }
 
-        public UserLoginDtoBuilder setId(Long id) {
+        public UserLoginDtoBuilder setId(UUID id) {
             this.id = id;
             return this;
         }
@@ -92,8 +101,13 @@ public class UserDto {
             return this;
         }
 
-        public UserLoginDtoBuilder setRegistrationDate(LocalDate registrationDate) {
-            this.registrationDate = registrationDate;
+        public UserLoginDtoBuilder setRegistrationAt(LocalDateTime registrationAt) {
+            this.registrationAt = registrationAt;
+            return this;
+        }
+
+        public UserLoginDtoBuilder setUpdateAt(LocalDateTime updateAt) {
+            this.updateAt = updateAt;
             return this;
         }
 
@@ -102,8 +116,8 @@ public class UserDto {
             return this;
         }
 
-        public UserDto build() {
-            return new UserDto(id, login, password, name, birthDate, registrationDate, role);
+        public UserReadDto build() {
+            return new UserReadDto(id, login, password, name, birthDate, registrationAt, updateAt, role);
         }
     }
 }

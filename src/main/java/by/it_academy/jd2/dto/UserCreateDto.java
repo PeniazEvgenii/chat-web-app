@@ -2,22 +2,18 @@ package by.it_academy.jd2.dto;
 
 import by.it_academy.jd2.entity.ERole;
 
-import java.time.LocalDate;
-
 public class UserCreateDto {
     private final String login;
     private final String password;
     private final String name;
     private final String birthDate;
-    private final LocalDate registrationDate;
     private final ERole role;
 
-    private UserCreateDto(String login, String password, String name, String birthDate, LocalDate registrationDate, ERole role) {
+    private UserCreateDto(String login, String password, String name, String birthDate, ERole role) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
-        this.registrationDate = registrationDate;
         this.role = role;
     }
 
@@ -41,10 +37,6 @@ public class UserCreateDto {
         return birthDate;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
-    }
-
     public ERole getRole() {
         return role;
     }
@@ -54,7 +46,6 @@ public class UserCreateDto {
         private String password;
         private String name;
         private String birthDate;
-        private LocalDate registrationDate;
         private ERole role;
 
         private UserDtoBuilder() {
@@ -80,18 +71,13 @@ public class UserCreateDto {
             return this;
         }
 
-        public UserDtoBuilder setRegisterDate(LocalDate registrationDate) {
-            this.registrationDate = registrationDate;
-            return this;
-        }
-
         public UserDtoBuilder setRole(ERole role) {
             this.role = role;
             return this;
         }
 
         public UserCreateDto build() {
-            return new UserCreateDto(login, password, name, birthDate, registrationDate, role);
+            return new UserCreateDto(login, password, name, birthDate, role);
         }
     }
 
@@ -102,7 +88,6 @@ public class UserCreateDto {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", registrationDate=" + registrationDate +
                 ", role=" + role +
                 '}';
     }

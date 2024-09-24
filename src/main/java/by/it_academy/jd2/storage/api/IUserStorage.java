@@ -1,6 +1,5 @@
 package by.it_academy.jd2.storage.api;
 
-import by.it_academy.jd2.dto.UserDto;
 import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
 
