@@ -4,4 +4,6 @@ import java.sql.Connection;
 
 public interface IConnectionManager {
     Connection open();
+
+    void close();
 }
