@@ -7,7 +7,7 @@ import by.it_academy.jd2.dto.UserLoginDto;
 import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.mapper.api.IUserMapper;
 import by.it_academy.jd2.service.api.IUserService;
-import by.it_academy.jd2.validation.ValidationException;
+import by.it_academy.jd2.validation.exception.ValidationException;
 import by.it_academy.jd2.validation.ValidationResult;
 import by.it_academy.jd2.validation.api.IValidate;
 
