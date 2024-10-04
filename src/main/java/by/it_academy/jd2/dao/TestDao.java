@@ -1,5 +1,7 @@
 package by.it_academy.jd2.dao;
 
+import by.it_academy.jd2.dao.connection.ConnectionManager;
+import by.it_academy.jd2.dao.connection.factory.ConnectionManagerFactory;
 import by.it_academy.jd2.dao.factory.MessageDaoFactory;
 import by.it_academy.jd2.dto.UserForMassageEntity;
 import by.it_academy.jd2.entity.MessageEntity;
@@ -18,6 +20,8 @@ public class TestDao {
             System.out.println(messageEntity.getUserTo() +"  " + messageEntity.getUserFrom());
         }
         System.out.println(byUserTo);
+
+        ConnectionManagerFactory.getInstance().close();
 
     }
 

@@ -4,7 +4,7 @@ import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.entity.ERole;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
-import by.it_academy.jd2.validation.ValidationException;
+import by.it_academy.jd2.validation.exception.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

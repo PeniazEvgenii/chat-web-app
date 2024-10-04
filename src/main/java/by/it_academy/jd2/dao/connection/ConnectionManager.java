@@ -2,6 +2,7 @@ package by.it_academy.jd2.dao.connection;
 
 import by.it_academy.jd2.config.properties.ConnectionProperty;
 import by.it_academy.jd2.dao.connection.api.IConnectionManager;
+import by.it_academy.jd2.util.PropertiesUtil;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import javax.sql.DataSource;
@@ -10,30 +11,30 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ConnectionManager implements IConnectionManager {
-    private static DataSource dataSource;
-    private static final ComboPooledDataSource cpds = new ComboPooledDataSource();;
+
+    private final ComboPooledDataSource cpds;
+    private DataSource dataSource;
 
     public ConnectionManager(ConnectionProperty connectionProperty) {
+        cpds = new ComboPooledDataSource();
+        loadDriver(connectionProperty.getDriver());
         configureDataSource(connectionProperty);
-    }
-
-    static {
-        loadDriver();
     }
 
     private void configureDataSource(ConnectionProperty connectionProperty) {
         cpds.setJdbcUrl(connectionProperty.getUrl());
         cpds.setUser(connectionProperty.getUsername());
         cpds.setPassword(connectionProperty.getPassword());
-        cpds.setMinPoolSize(5);
-        cpds.setAcquireIncrement(5);
-        cpds.setMaxPoolSize(20);
+        cpds.setMinPoolSize(connectionProperty.getMinPoolSize());
+        cpds.setAcquireIncrement(connectionProperty.getAcquireIncrement());
+        cpds.setMaxPoolSize(connectionProperty.getMaxPoolSize());
         dataSource = cpds;
     }
 
-    private static void loadDriver() {
+    private void loadDriver(String driver) {
         try {
-            cpds.setDriverClass("org.postgresql.Driver");
+           // cpds.setDriverClass("org.postgresql.Driver");
+            cpds.setDriverClass(driver);
         } catch (PropertyVetoException e) {
             throw new RuntimeException("Ошибка при загрузке драйвера базы данных",e);
         }
