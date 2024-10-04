@@ -1,4 +1,6 @@
-package by.it_academy.jd2.validation;
+package by.it_academy.jd2.validation.exception;
+
+import by.it_academy.jd2.validation.Error;
 
 import java.util.List;
 
