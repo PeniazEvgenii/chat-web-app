@@ -1,5 +1,6 @@
 package by.it_academy.jd2.entity;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -8,14 +9,16 @@ public class MessageEntity {
     private final OffsetDateTime createAt;
     private final UserEntity userFrom;
     private final UserEntity userTo;
-    private final String text;
+    private final String body;
+    private final LocalDateTime updateAt;
 
-    private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String text) {
+    private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String body, LocalDateTime updateAt) {
         this.id = id;
         this.createAt = createAt;
         this.userFrom = userFrom;
         this.userTo = userTo;
-        this.text = text;
+        this.body = body;
+        this.updateAt = updateAt;
     }
 
     public static MessageEntityBuilder builder() {
@@ -34,8 +37,8 @@ public class MessageEntity {
         return userTo;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
     public void setId(UUID id) {
@@ -46,12 +49,29 @@ public class MessageEntity {
         return id;
     }
 
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageEntity{" +
+                "id=" + id +
+                ", createAt=" + createAt +
+                ", userFrom=" + userFrom +
+                ", userTo=" + userTo +
+                ", body='" + body + '\'' +
+                ", updateAt=" + updateAt +
+                '}';
+    }
+
     public static class MessageEntityBuilder {
         private UUID id;
         private OffsetDateTime createAt;
         private UserEntity userFrom;
         private UserEntity userTo;
-        private String text;
+        private String body;
+        private LocalDateTime updateAt;
 
         private MessageEntityBuilder() {
         }
@@ -76,12 +96,18 @@ public class MessageEntity {
             return this;
         }
 
-        public MessageEntityBuilder setText(String text) {
-            this.text = text;
+        public MessageEntityBuilder setBody(String body) {
+            this.body = body;
             return this;
         }
+
+        public MessageEntityBuilder setUpdateAt(LocalDateTime updateAt) {
+            this.updateAt = updateAt;
+            return this;
+        }
+
         public MessageEntity build() {
-            return new MessageEntity(id, createAt, userFrom, userTo, text);
+            return new MessageEntity(id, createAt, userFrom, userTo, body, updateAt);
         }
     }
 }

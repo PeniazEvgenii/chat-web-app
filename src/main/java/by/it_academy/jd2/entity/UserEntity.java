@@ -10,18 +10,18 @@ public class UserEntity {
     private final String password;
     private final String name;
     private final LocalDate birthDate;
-    private final LocalDateTime registrationAt;
+    private final LocalDateTime createAt;
     private final LocalDateTime updateAt;
     private final String role;
 
     private UserEntity(UUID id, String login, String password, String name, LocalDate birthDate,
-                       LocalDateTime registrationAt, LocalDateTime updateAt, String role) {
+                       LocalDateTime createAt, LocalDateTime updateAt, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
-        this.registrationAt = registrationAt;
+        this.createAt = createAt;
         this.updateAt = updateAt;
         this.role = role;
     }
@@ -50,8 +50,8 @@ public class UserEntity {
         return birthDate;
     }
 
-    public LocalDateTime getRegistrationAt() {
-        return registrationAt;
+    public LocalDateTime getCreateAt() {
+        return createAt;
     }
 
     public LocalDateTime getUpdateAt() {
@@ -66,13 +66,27 @@ public class UserEntity {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", createAt=" + createAt +
+                ", updateAt=" + updateAt +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
     public static class UserEntityBuilder {
         private UUID id;
         private String login;
         private String password;
         private String name;
         private LocalDate birthDate;
-        private LocalDateTime registrationAt;
+        private LocalDateTime createAt;
         private LocalDateTime updateAt;
         private String role;
 
@@ -104,8 +118,8 @@ public class UserEntity {
             return this;
         }
 
-        public UserEntityBuilder setRegistrationAt(LocalDateTime registrationAt) {
-            this.registrationAt = registrationAt;
+        public UserEntityBuilder setCreateAt(LocalDateTime createAt) {
+            this.createAt = createAt;
             return this;
         }
 
@@ -120,7 +134,7 @@ public class UserEntity {
         }
 
         public UserEntity build() {
-            return new UserEntity(id, login, password, name, birthDate, registrationAt, updateAt,role);
+            return new UserEntity(id, login, password, name, birthDate, createAt, updateAt,role);
         }
     }
 }

@@ -12,17 +12,17 @@ public class UserReadDto {
     private final String password;
     private final String name;
     private final LocalDate birthDate;
-    private final LocalDateTime registrationAt;
+    private final LocalDateTime createAt;
     private final LocalDateTime updateAt;
     private final ERole role;
 
-    private UserReadDto(UUID id, String login, String password, String name, LocalDate birthDate, LocalDateTime registrationAt, LocalDateTime updateAt, ERole role) {
+    private UserReadDto(UUID id, String login, String password, String name, LocalDate birthDate, LocalDateTime createAt, LocalDateTime updateAt, ERole role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
-        this.registrationAt = registrationAt;
+        this.createAt = createAt;
         this.updateAt = updateAt;
         this.role = role;
     }
@@ -47,8 +47,8 @@ public class UserReadDto {
         return birthDate;
     }
 
-    public LocalDateTime getRegistrationAt() {
-        return registrationAt;
+    public LocalDateTime getCreateAt() {
+        return createAt;
     }
 
     public LocalDateTime getUpdateAt() {
@@ -69,7 +69,7 @@ public class UserReadDto {
         private String password;
         private String name;
         private LocalDate birthDate;
-        private LocalDateTime registrationAt;
+        private LocalDateTime createAt;
         private LocalDateTime updateAt;
         private ERole role;
 
@@ -101,8 +101,8 @@ public class UserReadDto {
             return this;
         }
 
-        public UserLoginDtoBuilder setRegistrationAt(LocalDateTime registrationAt) {
-            this.registrationAt = registrationAt;
+        public UserLoginDtoBuilder setCreateAt(LocalDateTime createAt) {
+            this.createAt = createAt;
             return this;
         }
 
@@ -117,7 +117,7 @@ public class UserReadDto {
         }
 
         public UserReadDto build() {
-            return new UserReadDto(id, login, password, name, birthDate, registrationAt, updateAt, role);
+            return new UserReadDto(id, login, password, name, birthDate, createAt, updateAt, role);
         }
     }
 }
