@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class ConnectionManager implements IConnectionManager {
 
     private final ComboPooledDataSource cpds;
-    private DataSource dataSource;
+   // private  DataSource dataSource;
 
     public ConnectionManager(ConnectionProperty connectionProperty) {
         cpds = new ComboPooledDataSource();
@@ -28,7 +28,7 @@ public class ConnectionManager implements IConnectionManager {
         cpds.setMinPoolSize(connectionProperty.getMinPoolSize());
         cpds.setAcquireIncrement(connectionProperty.getAcquireIncrement());
         cpds.setMaxPoolSize(connectionProperty.getMaxPoolSize());
-        dataSource = cpds;
+     //   dataSource = cpds;
     }
 
     private void loadDriver(String driver) {
@@ -43,7 +43,7 @@ public class ConnectionManager implements IConnectionManager {
     @Override
     public Connection open() {
         try {
-            return dataSource.getConnection();
+            return cpds.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при открытии соединения с базой данных", e);
         }

@@ -42,11 +42,14 @@ public class UserDao implements IUserDao {
             preparedStatement.setObject(3, user.getPassword());
             preparedStatement.setObject(4, user.getName());
             preparedStatement.setObject(5, user.getBirthDate());
-            preparedStatement.setObject(6, user.getRegistrationAt());
+            preparedStatement.setObject(6, user.getCreateAt());
             preparedStatement.setObject(7, user.getUpdateAt());
             preparedStatement.setObject(8, user.getRole());
 
-            preparedStatement.executeUpdate();
+            int row = preparedStatement.executeUpdate();
+            if (row == 0) {
+                throw new IllegalStateException("Пользователь не был сохранен");
+            }
 
             return user;
         } catch (SQLException e) {
@@ -54,31 +57,25 @@ public class UserDao implements IUserDao {
         }
     }
 
-    @Override
-    public boolean delete(UUID id) {
-        try (Connection connection = connectionManager.open();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)
-        ) {
-            preparedStatement.setObject(1, id);
-            int i = preparedStatement.executeUpdate();
-            return i > 0;
+    public Optional<UserEntity> getById(UUID id, Connection connection) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID_SQL)) {
+                preparedStatement.setObject(1, id);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                UserEntity user = null;
+                if (resultSet.next()) {
+                    user = buildUserEntity(resultSet);
+                }
+                return Optional.ofNullable(user);
+
         } catch (SQLException e) {
-            throw new DaoException("Ошибка удаления пользователя",e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public Optional<UserEntity> getById(UUID id) {
-        try (Connection connection = connectionManager.open();
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID_SQL)
-        ) {
-            preparedStatement.setObject(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            UserEntity user = null;
-            if(resultSet.next()) {
-                user = buildUserEntity(resultSet);
-            }
-            return Optional.ofNullable(user);
+        try (Connection connection = connectionManager.open()) {
+            return getById(id, connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -150,6 +147,21 @@ public class UserDao implements IUserDao {
         }
     }
 
+    @Override
+    public void delete(UUID id) {
+        try (Connection connection = connectionManager.open();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)
+        ) {
+            preparedStatement.setObject(1, id);
+            int i = preparedStatement.executeUpdate();
+            if(i == 0) {
+                throw new IllegalStateException("Пользователь не удален");
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Ошибка удаления пользователя",e);
+        }
+    }
+
     private UserEntity buildUserEntity(ResultSet resultSet) throws SQLException {
         return UserEntity.builder()
                 .setId(resultSet.getObject("id", UUID.class))
@@ -157,7 +169,7 @@ public class UserDao implements IUserDao {
                 .setPassword(resultSet.getObject("password", String.class))
                 .setName(resultSet.getObject("name", String.class))
                 .setBirthDate(resultSet.getDate("birth_date").toLocalDate())
-                .setRegistrationAt(resultSet.getObject("registration_at", LocalDateTime.class))
+                .setCreateAt(resultSet.getObject("registration_at", LocalDateTime.class))
                 .setUpdateAt(resultSet.getObject("registration_at", LocalDateTime.class))
                 .setRole(resultSet.getString("role"))
                 .build();

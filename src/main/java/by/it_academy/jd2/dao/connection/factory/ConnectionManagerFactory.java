@@ -11,7 +11,7 @@ import by.it_academy.jd2.util.PropertiesUtil;
  * переменными среды DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD.
  */
 public class ConnectionManagerFactory {
-    private static final int DEFAULT_MIN_POOL_SIZE = 10;
+    private static final int DEFAULT_MIN_POOL_SIZE = 3;
     private static final int DEFAULT_ACQUIRE_INCREMENT = 5;
     private static final int DEFAULT_MAX_POOL_SIZE = 25;
 
