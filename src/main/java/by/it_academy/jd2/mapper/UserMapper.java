@@ -19,7 +19,7 @@ public class UserMapper implements IUserMapper {
                 .setPassword(userEntity.getPassword())
                 .setName(userEntity.getName())
                 .setBirthDate(userEntity.getBirthDate())
-                .setRegistrationAt(userEntity.getRegistrationAt())
+                .setCreateAt(userEntity.getCreateAt())
                 .setUpdateAt(userEntity.getUpdateAt())
                 .setRole(ERole.getRoleByName(userEntity.getRole()).orElse(null))
                 .build();
@@ -33,7 +33,7 @@ public class UserMapper implements IUserMapper {
                 .setPassword(userCreateDto.getPassword())
                 .setName(userCreateDto.getName())
                 .setBirthDate(DateFormatUtil.parseDateFromString(userCreateDto.getBirthDate()))
-                .setRegistrationAt(LocalDateTime.now())
+                .setCreateAt(LocalDateTime.now())
                 .setUpdateAt(LocalDateTime.now())
                 .setRole(userCreateDto.getRole().name())
                 .build();
