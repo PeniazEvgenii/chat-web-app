@@ -4,18 +4,18 @@ import by.it_academy.jd2.dao.factory.DaoFactory;
 import by.it_academy.jd2.mapper.factory.MapperFactory;
 import by.it_academy.jd2.service.UserService;
 import by.it_academy.jd2.service.api.IUserService;
-import by.it_academy.jd2.validation.factory.ValidationFormFactory;
+import by.it_academy.jd2.validation.factory.ValidationFactory;
 
 public class UserServiceFactory {
-    private static final IUserService INSTANCE = new UserService(
-            ValidationFormFactory.getInstance(),
+    private static final IUserService userService = new UserService(
+            ValidationFactory.getValidationForm(),
             MapperFactory.getUserMapper(),
             DaoFactory.getUserDao()
     );
 
     private UserServiceFactory() {}
 
-    public static IUserService getInstance() {
-        return INSTANCE;
+    public static IUserService getUserService() {
+        return userService;
     }
 }

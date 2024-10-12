@@ -9,7 +9,7 @@ import by.it_academy.jd2.mapper.api.IUserMapper;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.validation.exception.ValidationException;
 import by.it_academy.jd2.validation.ValidationResult;
-import by.it_academy.jd2.validation.api.IValidate;
+import by.it_academy.jd2.validation.api.IValidateForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 
 public class UserService implements IUserService {
 
-    private final IValidate validationForm;
+    private final IValidateForm validationForm;
     private final IUserMapper userMapper;
     private final IUserDao userDao;
 
-    public UserService(IValidate validationForm,
+    public UserService(IValidateForm validationForm,
                        IUserMapper userMapper,
                        IUserDao userDao) {
         this.validationForm = validationForm;
@@ -57,9 +57,17 @@ public class UserService implements IUserService {
                .map(userMapper::mapEntityToDto);
     }
 
-    public Optional<UserReadDto> getByLogin(String login) {     //может еще надо и получение по логину Entity для сообщеия
+    public Optional<UserReadDto> getByLogin(String login) {
         return userDao.getByLogin(login)
                 .map(userMapper::mapEntityToDto);
+    }
+
+    public Long getCount() {
+        return userDao.getCount();
+    }
+
+    public Optional<UserEntity> getEntityByLogin(String login) {
+        return userDao.getByLogin(login);
     }
 
 

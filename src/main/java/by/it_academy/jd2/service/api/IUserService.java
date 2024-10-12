@@ -13,8 +13,12 @@ public interface IUserService {
 
     List<UserReadDto> getAll();
 
+    Long getCount();
+
     Optional<UserReadDto> login(UserLoginDto userLoginDto);
 
     Optional<UserReadDto> getByLogin(String login);
+
+    Optional<UserEntity> getEntityByLogin(String login);
 
 }
