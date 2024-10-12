@@ -1,11 +1,11 @@
 CREATE TABLE app.messages
 (
-    id bigserial,
+    id uuid,
     create_at timestamp with time zone NOT NULL,
-    user_id_from bigint NOT NULL,
-    user_id_to bigint NOT NULL,
+    user_id_from uuid NOT NULL,
+    user_id_to uuid NOT NULL,
     body text,
-    PRIMARY KEY (id),
+    CONSTRAINT pk_messages PRIMARY KEY (id),
     CONSTRAINT fk_user_from FOREIGN KEY (user_id_from) REFERENCES app.users (id),
     CONSTRAINT fk_user_to FOREIGN KEY (user_id_to) REFERENCES app.users (id)
 );
