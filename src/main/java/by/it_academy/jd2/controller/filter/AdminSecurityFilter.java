@@ -13,7 +13,7 @@ import java.io.IOException;
 import static by.it_academy.jd2.util.PathUtil.*;
 
 @WebFilter(urlPatterns = {PATTERN_URL_ADMIN_API, PATTERN_URL_ADMIN_UI})
-public class AdminSecurrityFilter implements Filter {
+public class AdminSecurityFilter implements Filter {
     private final String adminRole = ERole.ADMIN.name();
     private static final String SESSION_ATTRIBUTE_USER = "user";
 
