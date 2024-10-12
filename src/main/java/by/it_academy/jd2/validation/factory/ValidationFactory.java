@@ -1,15 +1,22 @@
 package by.it_academy.jd2.validation.factory;
 
 import by.it_academy.jd2.validation.ValidationForm;
-import by.it_academy.jd2.validation.api.IValidate;
+import by.it_academy.jd2.validation.ValidationMessage;
+import by.it_academy.jd2.validation.api.IValidateForm;
+import by.it_academy.jd2.validation.api.IValidateMessage;
 
-public class ValidationFormFactory {
-    private static final IValidate INSTANCE = new ValidationForm();
+public class ValidationFactory {
+    private static final IValidateForm validationForm = new ValidationForm();
+    private static final IValidateMessage validationMessage = new ValidationMessage();
 
-    private ValidationFormFactory() {}
+    private ValidationFactory() {}
 
-    public static IValidate getInstance() {
-        return INSTANCE;
+    public static IValidateForm getValidationForm() {
+        return validationForm;
+    }
+
+    public static IValidateMessage getValidationMessage() {
+        return validationMessage;
     }
 
 }

@@ -2,14 +2,10 @@ package by.it_academy.jd2.validation;
 
 import by.it_academy.jd2.dto.UserCreateDto;
 import by.it_academy.jd2.dto.UserReadDto;
-import by.it_academy.jd2.entity.UserEntity;
 import by.it_academy.jd2.util.DateFormatUtil;
-import by.it_academy.jd2.validation.api.IValidate;
+import by.it_academy.jd2.validation.api.IValidateForm;
 
-import java.util.List;
-import java.util.Optional;
-
-public class ValidationForm implements IValidate {
+public class ValidationForm implements IValidateForm {
     private static final int MAX_LENGTH_LOGIN = 64;
     private static final int MAX_LENGTH_PASSWORD = 64;
 
