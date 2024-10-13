@@ -1,9 +1,8 @@
-package by.it_academy.jd2.validation.api;
+package by.it_academy.jd2.service.validation.api;
 
-import by.it_academy.jd2.dto.MessageCreateDto;
-import by.it_academy.jd2.dto.UserReadDto;
-import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.validation.ValidationResult;
+import by.it_academy.jd2.service.dto.MessageCreateDto;
+import by.it_academy.jd2.dao.entity.UserEntity;
+import by.it_academy.jd2.service.validation.ValidationResult;
 
 public interface IValidateMessage {
 

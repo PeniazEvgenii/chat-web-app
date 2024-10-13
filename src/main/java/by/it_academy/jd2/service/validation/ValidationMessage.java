@@ -1,8 +1,8 @@
-package by.it_academy.jd2.validation;
+package by.it_academy.jd2.service.validation;
 
-import by.it_academy.jd2.dto.MessageCreateDto;
-import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.validation.api.IValidateMessage;
+import by.it_academy.jd2.service.dto.MessageCreateDto;
+import by.it_academy.jd2.dao.entity.UserEntity;
+import by.it_academy.jd2.service.validation.api.IValidateMessage;
 
 public class ValidationMessage implements IValidateMessage {
     @Override

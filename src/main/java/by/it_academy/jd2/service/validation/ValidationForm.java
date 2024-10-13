@@ -1,9 +1,9 @@
-package by.it_academy.jd2.validation;
+package by.it_academy.jd2.service.validation;
 
-import by.it_academy.jd2.dto.UserCreateDto;
-import by.it_academy.jd2.dto.UserReadDto;
+import by.it_academy.jd2.service.dto.UserCreateDto;
+import by.it_academy.jd2.service.dto.UserReadDto;
 import by.it_academy.jd2.util.DateFormatUtil;
-import by.it_academy.jd2.validation.api.IValidateForm;
+import by.it_academy.jd2.service.validation.api.IValidateForm;
 
 public class ValidationForm implements IValidateForm {
     private static final int MAX_LENGTH_LOGIN = 64;

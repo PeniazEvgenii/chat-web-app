@@ -1,6 +1,6 @@
-package by.it_academy.jd2.validation.exception;
+package by.it_academy.jd2.service.validation.exception;
 
-import by.it_academy.jd2.validation.Error;
+import by.it_academy.jd2.service.validation.Error;
 
 import java.util.List;
 

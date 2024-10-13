@@ -1,4 +1,4 @@
-package by.it_academy.jd2.validation;
+package by.it_academy.jd2.service.validation;
 
 import java.util.ArrayList;
 import java.util.List;

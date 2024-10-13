@@ -1,4 +1,4 @@
-package by.it_academy.jd2.validation;
+package by.it_academy.jd2.service.validation;
 
 public class Error {
     private final String name;
