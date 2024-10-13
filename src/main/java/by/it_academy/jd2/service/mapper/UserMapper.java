@@ -1,10 +1,10 @@
-package by.it_academy.jd2.mapper;
+package by.it_academy.jd2.service.mapper;
 
-import by.it_academy.jd2.dto.UserCreateDto;
-import by.it_academy.jd2.dto.UserReadDto;
-import by.it_academy.jd2.entity.ERole;
-import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.mapper.api.IUserMapper;
+import by.it_academy.jd2.service.dto.UserCreateDto;
+import by.it_academy.jd2.service.dto.UserReadDto;
+import by.it_academy.jd2.dao.entity.ERole;
+import by.it_academy.jd2.dao.entity.UserEntity;
+import by.it_academy.jd2.service.mapper.api.IUserMapper;
 import by.it_academy.jd2.util.DateFormatUtil;
 
 import java.time.LocalDateTime;

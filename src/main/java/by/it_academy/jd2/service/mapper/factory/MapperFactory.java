@@ -1,9 +1,9 @@
-package by.it_academy.jd2.mapper.factory;
+package by.it_academy.jd2.service.mapper.factory;
 
-import by.it_academy.jd2.mapper.MessageMapper;
-import by.it_academy.jd2.mapper.api.IMessageMapper;
-import by.it_academy.jd2.mapper.api.IUserMapper;
-import by.it_academy.jd2.mapper.UserMapper;
+import by.it_academy.jd2.service.mapper.MessageMapper;
+import by.it_academy.jd2.service.mapper.api.IMessageMapper;
+import by.it_academy.jd2.service.mapper.api.IUserMapper;
+import by.it_academy.jd2.service.mapper.UserMapper;
 
 public class MapperFactory {
     private static final IUserMapper userMapper = new UserMapper();
