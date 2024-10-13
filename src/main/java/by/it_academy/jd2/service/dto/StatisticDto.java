@@ -1,12 +1,14 @@
-package by.it_academy.jd2.dto;
+package by.it_academy.jd2.service.dto;
+
+import java.util.List;
 
 public class StatisticDto {
-    private final int countActiveUsers;
-    private final int countAllUsers;
-    private final int countMessages;
-    private final String loginActiveUser;
+    private final Long countActiveUsers;
+    private final Long countAllUsers;
+    private final Long countMessages;
+    private final List<String> loginActiveUser;
 
-    private StatisticDto(int countActiveUsers, int countAllUsers, int countMessages, String loginActiveUser) {
+    private StatisticDto(Long countActiveUsers, Long countAllUsers, Long countMessages, List<String> loginActiveUser) {
         this.countActiveUsers = countActiveUsers;
         this.countAllUsers = countAllUsers;
         this.countMessages = countMessages;
@@ -17,46 +19,46 @@ public class StatisticDto {
         return new StatisticDtoBuilder();
     }
 
-    public int getCountActiveUsers() {
+    public Long getCountActiveUsers() {
         return countActiveUsers;
     }
 
-    public int getCountAllUsers() {
+    public Long getCountAllUsers() {
         return countAllUsers;
     }
 
-    public int getCountMessage() {
+    public Long getCountMessages() {
         return countMessages;
     }
 
-    public String getLoginActiveUser() {
+    public List<String> getLoginActiveUser() {
         return loginActiveUser;
     }
 
     public static class StatisticDtoBuilder {
-        private int countActiveUsers;
-        private int countAllUsers;
-        private int countMessages;
-        private String loginActiveUser;
+        private Long countActiveUsers;
+        private Long countAllUsers;
+        private Long countMessages;
+        private List<String> loginActiveUser;
 
         private StatisticDtoBuilder() { }
 
-        public StatisticDtoBuilder setCountActiveUsers(int countActiveUsers) {
+        public StatisticDtoBuilder setCountActiveUsers(Long countActiveUsers) {
             this.countActiveUsers = countActiveUsers;
             return this;
         }
 
-        public StatisticDtoBuilder setCountAllUsers(int countAllUsers) {
+        public StatisticDtoBuilder setCountAllUsers(Long countAllUsers) {
             this.countAllUsers = countAllUsers;
             return this;
         }
 
-        public StatisticDtoBuilder setCountMessages(int countMessages) {
+        public StatisticDtoBuilder setCountMessages(Long countMessages) {
             this.countMessages = countMessages;
             return this;
         }
 
-        public StatisticDtoBuilder setLoginActiveUser(String loginActiveUser) {
+        public StatisticDtoBuilder setLoginActiveUser(List<String> loginActiveUser) {
             this.loginActiveUser = loginActiveUser;
             return this;
         }

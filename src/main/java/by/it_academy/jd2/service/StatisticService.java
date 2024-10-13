@@ -1,48 +1,49 @@
 package by.it_academy.jd2.service;
 
-import by.it_academy.jd2.dto.StatisticDto;
-import by.it_academy.jd2.dto.UserReadDto;
+import by.it_academy.jd2.service.api.IMessageService;
+import by.it_academy.jd2.service.api.IUserService;
+import by.it_academy.jd2.service.dto.StatisticDto;
 import by.it_academy.jd2.service.api.IStatisticsService;
-import by.it_academy.jd2.storage.api.IUserStorage;
+import by.it_academy.jd2.storage.ICountSessionStorage;
 
-import java.util.ArrayList;
-import java.util.List;
+public class StatisticService implements IStatisticsService {
 
-public class StatisticService implements IStatisticsService {            // переделать
+     private final ICountSessionStorage countSessionStorage;
+     private final IUserService userService;
+     private final IMessageService messageService;
 
-    private final IUserStorage userStorage;
-
-    List<String> activeSession = new ArrayList<>();
-
-    public StatisticService(IUserStorage userStorage) {
-        this.userStorage = userStorage;
+    public StatisticService(ICountSessionStorage countSessionStorage, IUserService userService, IMessageService messageService) {
+        this.countSessionStorage = countSessionStorage;
+        this.userService = userService;
+        this.messageService = messageService;
     }
 
-
-    //из листнера на сохранение
-    public void saveFromSession(UserReadDto userReadDto, String sessionId) {
-        String login = userReadDto.getLogin();
-        activeSession.add(sessionId);
+    public void saveFromSession() {
+        countSessionStorage.addActive();
     }
 
-    //из листнера на удаление
-    public boolean deleteFromSession(String sessionId) {
-       return activeSession.remove(sessionId);
-    }
-
-    public int getCountAllUsers() {
-       return userStorage.getAll().size();
-    }
-
-    public int getActiveUsers() {
-        return activeSession.size();
+    public void deleteFromSession() {
+        countSessionStorage.remove();
     }
 
     public StatisticDto get() {
         return StatisticDto.builder()
                 .setCountActiveUsers(getActiveUsers())
                 .setCountAllUsers(getCountAllUsers())
-                .setCountMessages(1000)                       //поменять!!!! и логины можно передать
+                .setCountMessages(getCountAllMessages())
                 .build();
+    }
+
+    public Long getCountAllUsers() {
+       return userService.getCount();
+    }
+
+    public Long getCountAllMessages() {
+        return messageService.getCount();
+    }
+
+
+    public Long getActiveUsers() {
+        return countSessionStorage.getCountActiveUsers();
     }
 }

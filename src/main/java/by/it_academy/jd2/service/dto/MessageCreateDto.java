@@ -1,7 +1,5 @@
-package by.it_academy.jd2.dto;
+package by.it_academy.jd2.service.dto;
 
-
-import java.util.UUID;
 
 public class MessageCreateDto {
     private final String username;

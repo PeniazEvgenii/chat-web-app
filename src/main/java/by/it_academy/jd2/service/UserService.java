@@ -1,15 +1,15 @@
 package by.it_academy.jd2.service;
 
 import by.it_academy.jd2.dao.api.IUserDao;
-import by.it_academy.jd2.dto.UserCreateDto;
-import by.it_academy.jd2.dto.UserReadDto;
-import by.it_academy.jd2.dto.UserLoginDto;
-import by.it_academy.jd2.entity.UserEntity;
-import by.it_academy.jd2.mapper.api.IUserMapper;
+import by.it_academy.jd2.service.dto.UserCreateDto;
+import by.it_academy.jd2.service.dto.UserReadDto;
+import by.it_academy.jd2.service.dto.UserLoginDto;
+import by.it_academy.jd2.dao.entity.UserEntity;
+import by.it_academy.jd2.service.mapper.api.IUserMapper;
 import by.it_academy.jd2.service.api.IUserService;
-import by.it_academy.jd2.validation.exception.ValidationException;
-import by.it_academy.jd2.validation.ValidationResult;
-import by.it_academy.jd2.validation.api.IValidateForm;
+import by.it_academy.jd2.service.validation.exception.ValidationException;
+import by.it_academy.jd2.service.validation.ValidationResult;
+import by.it_academy.jd2.service.validation.api.IValidateForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,11 +37,8 @@ public class UserService implements IUserService {
         if (!validationResult.checkErrorEmpty()) {
             throw new ValidationException(validationResult.getErrors());
         }
-
         UserEntity userEntity = userMapper.mapDtoToEntity(userCreateDto);
-
         return userDao.create(userEntity);   //надо на сущность поменять
-
     }
 
     @Override
@@ -69,9 +66,4 @@ public class UserService implements IUserService {
     public Optional<UserEntity> getEntityByLogin(String login) {
         return userDao.getByLogin(login);
     }
-
-
-
-
-
 }

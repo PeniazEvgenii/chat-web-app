@@ -1,4 +1,4 @@
-package by.it_academy.jd2.dto;
+package by.it_academy.jd2.service.dto;
 
 public class UserLoginDto {
     private final String login;

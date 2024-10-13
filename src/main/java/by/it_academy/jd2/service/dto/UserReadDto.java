@@ -1,6 +1,6 @@
-package by.it_academy.jd2.dto;
+package by.it_academy.jd2.service.dto;
 
-import by.it_academy.jd2.entity.ERole;
+import by.it_academy.jd2.dao.entity.ERole;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

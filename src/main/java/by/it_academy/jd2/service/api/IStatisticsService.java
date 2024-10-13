@@ -1,13 +1,18 @@
 package by.it_academy.jd2.service.api;
 
-import by.it_academy.jd2.dto.StatisticDto;
-import by.it_academy.jd2.dto.UserReadDto;
+import by.it_academy.jd2.service.dto.StatisticDto;
 
 public interface IStatisticsService {
 
-    void saveFromSession(UserReadDto userReadDto, String sessionId);
+    void saveFromSession();
 
-    boolean deleteFromSession(String sessionId);
+    void deleteFromSession();
+
+    Long getCountAllUsers();
+
+    Long getCountAllMessages();
 
     StatisticDto get();
+
+    Long getActiveUsers();
 }
