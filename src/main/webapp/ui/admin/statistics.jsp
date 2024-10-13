@@ -26,6 +26,11 @@
     <h2>Статистика приложения</h2>
 
     <table>
+        <tr>
+           <td>Количество активных пользователей</td>
+           <td>Количество пользователей в приложении"</td>
+           <td>Количество сообщений отправленных в приложении</td>
+        </tr>
         <c:forEach var="statistic" items="${requestScope.statistics}">
             <tr>
                 <td>${statistic.key} :</td>

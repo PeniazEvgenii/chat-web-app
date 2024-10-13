@@ -5,7 +5,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public class MessageEntity {
-    private UUID id;
+    private final UUID id;
     private final OffsetDateTime createAt;
     private final UserEntity userFrom;
     private final UserEntity userTo;
@@ -39,10 +39,6 @@ public class MessageEntity {
 
     public String getBody() {
         return body;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public UUID getId() {
