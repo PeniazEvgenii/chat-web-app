@@ -1,7 +1,7 @@
 package by.it_academy.jd2.controller.servlet;
 
-import by.it_academy.jd2.dto.StatisticDto;
 import by.it_academy.jd2.service.api.IStatisticsService;
+import by.it_academy.jd2.service.dto.StatisticDto;
 import by.it_academy.jd2.service.factory.StatisticServiceFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,27 +10,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import static by.it_academy.jd2.util.PathUtil.STATISTICS_SERVLET;
-import static by.it_academy.jd2.util.PathUtil.getPathJsp;
+import static by.it_academy.jd2.util.PathUtil.*;
 
 @WebServlet(urlPatterns = STATISTICS_SERVLET)
 public class StatisticsServlet extends HttpServlet {
-    private final IStatisticsService statisticsService = StatisticServiceFactory.getInstance();
+    public static final String ATTRIBUTE_STATISTICS = "statistics";
+
+    private final IStatisticsService statisticsService = StatisticServiceFactory.getStatisticService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, Integer> test = new HashMap<>();
 
         StatisticDto statisticDto = statisticsService.get();
+        req.setAttribute(ATTRIBUTE_STATISTICS, statisticDto);
 
-        test.put("Количество активных пользователей", statisticDto.getCountActiveUsers());
-        test.put("Количество пользователей в приложении", statisticDto.getCountAllUsers());
-        test.put("Количество сообщений отправленных в приложении", statisticDto.getCountMessage());
-        req.setAttribute("statistics", test);
-
-        req.getRequestDispatcher(getPathJsp("admin/statistics")).forward(req, resp);
+        req.getRequestDispatcher(STATISTICS_JSP).forward(req, resp);
     }
 }

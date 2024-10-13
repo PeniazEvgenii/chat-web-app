@@ -1,10 +1,10 @@
 package by.it_academy.jd2.controller.servlet;
 
-import by.it_academy.jd2.dto.UserCreateDto;
-import by.it_academy.jd2.entity.ERole;
+import by.it_academy.jd2.service.dto.UserCreateDto;
+import by.it_academy.jd2.dao.entity.ERole;
 import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.factory.UserServiceFactory;
-import by.it_academy.jd2.validation.exception.ValidationException;
+import by.it_academy.jd2.service.validation.exception.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,12 +24,11 @@ public class RegistrationServlet extends HttpServlet {
     public static final String ATTRIBUTE_ERRORS = "errors";
     public static final String ATTRIBUTE_ENTER_LOGIN = "enterLogin";
 
-    private final IUserService userService = UserServiceFactory.getInstance();
+    private final IUserService userService = UserServiceFactory.getUserService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.getRequestDispatcher(getPathJsp(REGISTRATION_JSP)).forward(req, resp);
+        req.getRequestDispatcher(REGISTRATION_JSP).forward(req, resp);
     }
 
     @Override
