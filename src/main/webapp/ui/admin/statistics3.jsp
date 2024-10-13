@@ -26,18 +26,12 @@
     <h2>Статистика приложения</h2>
 
     <table>
-        <tr>
-           <td>Количество активных пользователей:</td>
-           <td>${requestScope.statistics.countActiveUsers}</td>
-        </tr>
-        <tr>
-           <td>Количество пользователей в приложении</td>
-           <td>${requestScope.statistics.countAllUsers}</td>
-        </tr>
-        <tr>
-            <td>Количество сообщений отправленных в приложении</td>
-            <td>${requestScope.statistics.countMessages}</td>
-        </tr>
+        <c:forEach var="statistic" items="${requestScope.statistics}">
+            <tr>
+                <td>${statistic.key} :</td>
+                <td>${statistic.value}</td>
+            </tr>
+        </c:forEach>
     </table>
     <br>
      <details>
