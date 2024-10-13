@@ -10,6 +10,9 @@ public final class DateFormatUtil {
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String FORMAT_DATE_TIME = "HH:mm:ss dd.MM.yyyy";
 
+    private DateFormatUtil() {
+    }
+
     public static LocalDate parseDateFromString (String rawDate) {
         return LocalDate.parse(rawDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }

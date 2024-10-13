@@ -13,8 +13,12 @@ public final class PathUtil {
     public final static String PATTERN_URL_ADMIN_UI = "/ui/admin/*";
     public final static String PATTERN_URL_ADMIN_API = "/api/admin/*";
 
-    public static final String LOGIN_JSP = "signIn";
-    public static final String REGISTRATION_JSP = "signUp";
+    public static final String LOGIN_JSP = "/ui/signIn.jsp";
+    public static final String REGISTRATION_JSP = "/ui/signUp.jsp";
+    public static final String MESSAGE_JSP = "/ui/user/message.jsp";
+    public static final String STATISTICS_JSP = "/ui/admin/statistics.jsp";
+    public static final String CHATS_JSP = "/ui/user/chats.jsp";
+
 
     private static final String JSP_FORMAT = "/ui/%s.jsp";
 
