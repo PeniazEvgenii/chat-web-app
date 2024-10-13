@@ -1,4 +1,4 @@
-package by.it_academy.jd2.entity;
+package by.it_academy.jd2.dao.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

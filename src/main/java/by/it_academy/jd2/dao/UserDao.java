@@ -2,8 +2,8 @@ package by.it_academy.jd2.dao;
 
 import by.it_academy.jd2.dao.api.IUserDao;
 import by.it_academy.jd2.dao.connection.api.IConnectionManager;
-import by.it_academy.jd2.dto.UserLoginDto;
-import by.it_academy.jd2.entity.UserEntity;
+import by.it_academy.jd2.service.dto.UserLoginDto;
+import by.it_academy.jd2.dao.entity.UserEntity;
 import by.it_academy.jd2.dao.exception.DaoException;
 
 import java.sql.*;
@@ -57,6 +57,15 @@ public class UserDao implements IUserDao {
         }
     }
 
+    @Override
+    public Optional<UserEntity> getById(UUID id) {
+        try (Connection connection = connectionManager.open()) {
+            return getById(id, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Optional<UserEntity> getById(UUID id, Connection connection) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID_SQL)) {
                 preparedStatement.setObject(1, id);
@@ -67,15 +76,6 @@ public class UserDao implements IUserDao {
                 }
                 return Optional.ofNullable(user);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public Optional<UserEntity> getById(UUID id) {
-        try (Connection connection = connectionManager.open()) {
-            return getById(id, connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -3,7 +3,7 @@ package by.it_academy.jd2.dao;
 import by.it_academy.jd2.dao.api.IMessageDao;
 import by.it_academy.jd2.dao.api.IUserDao;
 import by.it_academy.jd2.dao.connection.api.IConnectionManager;
-import by.it_academy.jd2.entity.MessageEntity;
+import by.it_academy.jd2.dao.entity.MessageEntity;
 import by.it_academy.jd2.dao.exception.DaoException;
 
 import java.sql.Connection;
@@ -23,8 +23,8 @@ public class MessageDao implements IMessageDao {
 
     private static final String INSERT_SQL = "INSERT INTO app.messages (id, create_at, user_id_from, user_id_to, body, update_at)" +
             " VALUES (?, ?, ?, ?, ?, ?) ";
-    private static final String GET_BY_USER_ID_TO_SQL = "SELECT id, create_at, user_id_from, user_id_to, body, update_at FROM app.messages " +    //переменовать
-            " WHERE app.messages.user_id_to = ? ORDER BY create_at";
+    private static final String GET_BY_USER_ID_TO_SQL = "SELECT id, create_at, user_id_from, user_id_to, body, update_at FROM app.messages " +
+            " WHERE app.messages.user_id_to = ? ORDER BY create_at DESC";
     private static final String GET_COUNT_SQL = "SELECT COUNT(id) as count_message FROM app.messages";
     private static final String GET_AL_SQL = "SELECT id, create_at, user_id_from, user_id_to, body, update_at FROM app.messages";
 

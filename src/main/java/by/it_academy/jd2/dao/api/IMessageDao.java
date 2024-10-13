@@ -1,6 +1,6 @@
 package by.it_academy.jd2.dao.api;
 
-import by.it_academy.jd2.entity.MessageEntity;
+import by.it_academy.jd2.dao.entity.MessageEntity;
 
 import java.util.List;
 import java.util.UUID;

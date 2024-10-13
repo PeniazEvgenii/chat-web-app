@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class ConnectionManager implements IConnectionManager {
 
     private final ComboPooledDataSource cpds;
-   // private  DataSource dataSource;
 
     public ConnectionManager(ConnectionProperty connectionProperty) {
         cpds = new ComboPooledDataSource();
@@ -28,12 +27,10 @@ public class ConnectionManager implements IConnectionManager {
         cpds.setMinPoolSize(connectionProperty.getMinPoolSize());
         cpds.setAcquireIncrement(connectionProperty.getAcquireIncrement());
         cpds.setMaxPoolSize(connectionProperty.getMaxPoolSize());
-     //   dataSource = cpds;
     }
 
     private void loadDriver(String driver) {
         try {
-           // cpds.setDriverClass("org.postgresql.Driver");
             cpds.setDriverClass(driver);
         } catch (PropertyVetoException e) {
             throw new RuntimeException("Ошибка при загрузке драйвера базы данных",e);

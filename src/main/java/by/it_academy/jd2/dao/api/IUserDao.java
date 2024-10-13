@@ -1,7 +1,7 @@
 package by.it_academy.jd2.dao.api;
 
-import by.it_academy.jd2.dto.UserLoginDto;
-import by.it_academy.jd2.entity.UserEntity;
+import by.it_academy.jd2.service.dto.UserLoginDto;
+import by.it_academy.jd2.dao.entity.UserEntity;
 
 import java.sql.Connection;
 import java.util.List;
