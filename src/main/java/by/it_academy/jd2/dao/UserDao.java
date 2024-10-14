@@ -148,11 +148,11 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(UserEntity user) {
         try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID)
         ) {
-            preparedStatement.setObject(1, id);
+            preparedStatement.setObject(1, user.getId());
             int i = preparedStatement.executeUpdate();
             if(i == 0) {
                 throw new IllegalStateException("Пользователь не удален");

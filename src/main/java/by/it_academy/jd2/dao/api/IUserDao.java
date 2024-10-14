@@ -12,7 +12,7 @@ public interface IUserDao {
 
     UserEntity create(UserEntity user);
 
-    void delete(UUID id);
+    void delete(UserEntity user);
 
     Long getCount();
 

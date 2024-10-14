@@ -1,16 +1,36 @@
 package by.it_academy.jd2.dao.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+@Entity
+@NoArgsConstructor
+@Table(name = "messages")
 public class MessageEntity {
-    private final UUID id;
-    private final OffsetDateTime createAt;
-    private final UserEntity userFrom;
-    private final UserEntity userTo;
-    private final String body;
-    private final LocalDateTime updateAt;
+    @Id
+    private UUID id;
+
+    @Column(nullable = false)
+    private OffsetDateTime createAt;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id_from", nullable = false)
+    private UserEntity userFrom;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id_to", nullable = false)
+    private UserEntity userTo;
+
+    @Column
+    private String body;
+
+    @Column(nullable = false)
+    private LocalDateTime updateAt;
 
     private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String body, LocalDateTime updateAt) {
         this.id = id;
