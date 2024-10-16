@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.time.ZoneId;
@@ -21,8 +22,8 @@ import static by.it_academy.jd2.util.PathUtil.*;
 public class LoginServlet extends HttpServlet {
     public static final String SESSION_ATTRIBUTE_USER = "user";
     public static final String SESSION_ATTRIBUTE_TIMEZONE = "tz";
-    public static final String REQUEST_PARAMETER_TIMEZONE = "timezone";
-    public static final String REQUEST_ATTRIBUTE_ACCESS = "access";
+    public static final String PARAMETER_TIMEZONE = "timezone";
+    public static final String PARAMETER_ERROR = "?error=1&login=";
 
     private final IUserService userService = UserServiceFactory.getUserService();
 
@@ -33,13 +34,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String timezone = req.getParameter(REQUEST_PARAMETER_TIMEZONE);
-        if(timezone != null && !timezone.isBlank()) {
+        String timezone = req.getParameter(PARAMETER_TIMEZONE);
+        if (timezone != null && !timezone.isBlank()) {
             req.getSession().setAttribute(SESSION_ATTRIBUTE_TIMEZONE, ZoneId.of(timezone));
         }
 
-        UserLoginDto userLoginDto = new UserLoginDto(req.getParameter(PARAMETER_LOGIN),
-                                                     req.getParameter(PARAMETER_PASSWORD));
+        UserLoginDto userLoginDto = new UserLoginDto(
+                req.getParameter(PARAMETER_LOGIN),
+                req.getParameter(PARAMETER_PASSWORD));
 
         userService.login(userLoginDto).ifPresentOrElse(
                 userDto -> loginSuccess(req, resp, userDto),
@@ -47,25 +49,15 @@ public class LoginServlet extends HttpServlet {
         );
     }
 
+    @SneakyThrows
     private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserReadDto userReadDto) {
-        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userReadDto);
-        try {
-            req.setAttribute(REQUEST_ATTRIBUTE_ACCESS , "Login is successfully");         //можно сделать проверкку на уже установленный в сессии user
-            doGet(req, resp);
-            //resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);          // пока на логин, а так можно избавиться от exception
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userReadDto);          //можно сделать проверкку на уже установленный в сессии user
+        resp.sendRedirect(req.getContextPath() + START_SERVLET);
     }
 
+    @SneakyThrows
     private void loginFail(HttpServletRequest req, HttpServletResponse resp) {
         String login = req.getParameter(PARAMETER_LOGIN);
-        try {
-            resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET + "?error=1&login=" + login);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET + PARAMETER_ERROR + login);
     }
 }

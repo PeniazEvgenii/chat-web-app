@@ -8,8 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static by.it_academy.jd2.util.PathUtil.LOGIN_SERVLET;
-import static by.it_academy.jd2.util.PathUtil.LOGOUT_SERVLET;
+import static by.it_academy.jd2.util.PathUtil.*;
 
 @WebServlet(urlPatterns = LOGOUT_SERVLET)
 public class LogOutServlet extends HttpServlet {
@@ -17,6 +16,6 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().invalidate();
-        resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);
+        resp.sendRedirect(req.getContextPath() + START_SERVLET);
     }
 }

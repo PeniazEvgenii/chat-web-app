@@ -21,6 +21,7 @@ public class RegistrationServlet extends HttpServlet {
     public static final String PARAMETER_PASSWORD = "password";
     public static final String PARAMETER_NAME = "name";
     public static final String PARAMETER_BIRTHDAY = "birthday";
+    public static final String PARAMETER_REGISTER = "?register=ok";
     public static final String ATTRIBUTE_ERRORS = "errors";
     public static final String ATTRIBUTE_ENTER_LOGIN = "enterLogin";
 
@@ -43,7 +44,7 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userCreateDto);
-            resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);
+            resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET + PARAMETER_REGISTER);
         } catch (ValidationException e) {
             req.setAttribute(ATTRIBUTE_ERRORS, e.getErrors());
             req.setAttribute(ATTRIBUTE_ENTER_LOGIN, req.getParameter(PARAMETER_LOGIN));
