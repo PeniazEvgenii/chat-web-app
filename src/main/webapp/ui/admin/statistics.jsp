@@ -23,6 +23,9 @@
 </head>
 <body>
     <%@ include file="../LogOut.jsp" %>
+    <a href="${pageContext.request.contextPath}/">
+        <button type="button" style="Margin: 0 0px; width: 10%;">Стартовая страница</button>
+    </a>
     <h2>Статистика приложения</h2>
 
     <table>

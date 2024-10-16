@@ -23,8 +23,12 @@
 </head>
 <body>
     <%@ include file="../LogOut.jsp" %>
+    <a href="${pageContext.request.contextPath}/">
+         <button type="button" style="Margin: 0 0px; width: 10%;">Стартовая страница</button>
+    </a>
+    <br>
     <span>
-        <b>Текущий пользователь: ${requestScope.messages[0].userTo.login}</b>
+        <b>Текущий пользователь: ${sessionScope.user.login}</b>
     </span>
 
     <h2>Список сообщений</h2>

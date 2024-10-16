@@ -6,8 +6,12 @@
     <%@ include file="header.jsp" %>
 </head>
 <body>
-
     <h2>Вход пользователя в систему:</h2>
+    <c:if test="${param.register != null}">
+        <div style="color: ForestGreen; font-size: 13pt">
+           <span>Пользователь успешно зарегистрирован. Введите логин и пароль</span>
+        </div>
+    </c:if>
     <form action="${pageContext.request.contextPath}/api/login" method="post">
         <p><label for="loginID"> Логин:</label>
             <input type="text" name="login" id="loginID" value="${param.login}"  style="margin-left: 35px">
@@ -23,16 +27,11 @@
 
     <c:if test="${param.error != null}">
         <div style="color: red; font-size: 15pt">
-            <span>Login or password is invalid</span>
+            <span>Неверный логин или пароль</span>
         </div>
     </c:if>
-     <c:if test="${not empty requestScope.access}">
-         <div style="color: ForestGreen; font-size: 15pt">
-             <span>${requestScope.access}</span>
-         </div>
-     </c:if>
 
-    <h3>Если у вас нет учетной записи, вам необходимо пройти регистрацию</h3>
+    <h4>Если у вас нет учетной записи, вам необходимо пройти регистрацию</h4>
 
     <a href="${pageContext.request.contextPath}/api/user">
         <button type="button" style="Margin: 0 140px;">Зарегистрироваться</button>
