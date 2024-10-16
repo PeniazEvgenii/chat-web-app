@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static by.it_academy.jd2.util.PathUtil.*;
 
-@WebFilter(urlPatterns = {MESSAGE_SERVLET, PATTERN_URL_USER_UI})
+@WebFilter(urlPatterns = {MESSAGE_SERVLET, PATTERN_URL_USER_UI, CHAT_SERVLET})
 public class UserSecurityFilter implements Filter {
     private static final String SESSION_ATTRIBUTE_USER = "user";
 
@@ -23,7 +23,7 @@ public class UserSecurityFilter implements Filter {
         if(session != null && session.getAttribute(SESSION_ATTRIBUTE_USER) != null) {
             chain.doFilter(request, response);
         } else {
-            resp.sendRedirect(req.getContextPath() + LOGIN_SERVLET);
+            resp.sendRedirect(req.getContextPath() + START_SERVLET);
         }
     }
 }
