@@ -8,6 +8,8 @@ public final class PathUtil {
     public final static String MESSAGE_SERVLET = "/api/message";
     public final static String STATISTICS_SERVLET = "/api/admin/statistics";
     public final static String LOGOUT_SERVLET = "/api/logout";
+    public final static String CHAT_SERVLET = "/api/chat";
+    public final static String START_SERVLET = "/";
 
     public final static String PATTERN_URL_USER_UI = "/ui/user/*";
     public final static String PATTERN_URL_ADMIN_UI = "/ui/admin/*";
@@ -18,7 +20,7 @@ public final class PathUtil {
     public static final String MESSAGE_JSP = "/ui/user/message.jsp";
     public static final String STATISTICS_JSP = "/ui/admin/statistics.jsp";
     public static final String CHATS_JSP = "/ui/user/chats.jsp";
-
+    public static final String START_JSP = "/ui/start.jsp";
 
     private static final String JSP_FORMAT = "/ui/%s.jsp";
 

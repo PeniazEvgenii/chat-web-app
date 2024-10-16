@@ -14,8 +14,8 @@
         <maven.tomcat.server>TomcatServer</maven.tomcat.server>
         <maven.tomcat.path>/${project.build.finalName}</maven.tomcat.path>
 
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit-jupiter.version>5.10.3</junit-jupiter.version>
         <hibernate.version>6.6.1.Final</hibernate.version>
@@ -67,7 +67,6 @@
             <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>

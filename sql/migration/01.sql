@@ -6,3 +6,4 @@ UPDATE app.messages
 
 ALTER TABLE app.messages
     ALTER COLUMN update_at SET NOT NULL;
+
