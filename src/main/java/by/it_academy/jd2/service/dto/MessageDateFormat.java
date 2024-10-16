@@ -1,18 +1,16 @@
 package by.it_academy.jd2.service.dto;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
-public class MessageWithZoneDto {
+public class MessageDateFormat {
     private final UUID id;
-    private final LocalDateTime createAt;
+    private final String createAt;
     private final UserReadDto userFrom;
     private final UserReadDto userTo;
     private final String body;
-    private final LocalDateTime updateAt;
+    private final String updateAt;
 
-    public MessageWithZoneDto(UUID id, LocalDateTime createAt, UserReadDto userFrom, UserReadDto userTo, String body, LocalDateTime updateAt) {
+    public MessageDateFormat(UUID id, String createAt, UserReadDto userFrom, UserReadDto userTo, String body, String updateAt) {
         this.createAt = createAt;
         this.userFrom = userFrom;
         this.userTo = userTo;
@@ -21,15 +19,15 @@ public class MessageWithZoneDto {
         this.id = id;
     }
 
-    public static MessageWithZoneDtoBuilder builder() {
-        return new MessageWithZoneDtoBuilder();
+    public static MessageDateFormatBuilder builder() {
+        return new MessageDateFormatBuilder();
     }
 
     public UUID getId() {
         return id;
     }
 
-    public LocalDateTime getCreateAt() {
+    public String getCreateAt() {
         return createAt;
     }
 
@@ -45,53 +43,53 @@ public class MessageWithZoneDto {
         return body;
     }
 
-    public LocalDateTime getUpdateAt() {
+    public String getUpdateAt() {
         return updateAt;
     }
 
-    public static class MessageWithZoneDtoBuilder {
+    public static class MessageDateFormatBuilder {
         private UUID id;
-        private LocalDateTime createAt;
+        private String createAt;
         private UserReadDto userFrom;
         private UserReadDto userTo;
         private String body;
-        private LocalDateTime updateAt;
+        private String updateAt;
 
-        private MessageWithZoneDtoBuilder() {
+        private MessageDateFormatBuilder() {
         }
 
-        public MessageWithZoneDtoBuilder setId(UUID id) {
+        public MessageDateFormatBuilder setId(UUID id) {
             this.id = id;
             return this;
         }
 
-        public MessageWithZoneDtoBuilder setCreateAt(LocalDateTime createAt) {
+        public MessageDateFormatBuilder setCreateAt(String createAt) {
             this.createAt = createAt;
             return this;
         }
 
-        public MessageWithZoneDtoBuilder setUserFrom(UserReadDto userFrom) {
+        public MessageDateFormatBuilder setUserFrom(UserReadDto userFrom) {
             this.userFrom = userFrom;
             return this;
         }
 
-        public MessageWithZoneDtoBuilder setUserTo(UserReadDto userTo) {
+        public MessageDateFormatBuilder setUserTo(UserReadDto userTo) {
             this.userTo = userTo;
             return this;
         }
 
-        public MessageWithZoneDtoBuilder setBody(String body) {
+        public MessageDateFormatBuilder setBody(String body) {
             this.body = body;
             return this;
         }
 
-        public MessageWithZoneDtoBuilder setUpdateAt(LocalDateTime updateAt) {
+        public MessageDateFormatBuilder setUpdateAt(String updateAt) {
             this.updateAt = updateAt;
             return this;
         }
 
-        public MessageWithZoneDto build() {
-            return new MessageWithZoneDto(id, createAt, userFrom, userTo, body, updateAt);
+        public MessageDateFormat build() {
+            return new MessageDateFormat(id, createAt, userFrom, userTo, body, updateAt);
         }
     }
 }

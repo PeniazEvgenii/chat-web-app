@@ -23,6 +23,16 @@ public class RunnerTest1 {
         Optional<UserEntity> a2 = userDaoHibernate.getById(UUID.fromString("b100ca71-a979-477a-a66d-81c8f4dc2776"));
 
         List<MessageEntity> all = messageDaoHibernate.getByUserTo(UUID.fromString("b100ca71-a979-477a-a66d-81c8f4dc2776"));
+
+        messageDaoHibernate.create(MessageEntity.builder()
+                        .setId(UUID.randomUUID())
+                        .setUserFrom(a1.get())
+                        .setUserTo(a2.get())
+                        .setBody("Test time")
+                        .setCreateAt(OffsetDateTime.now())
+                        .setUpdateAt(OffsetDateTime.now())
+                .build());
+
         for (MessageEntity messageEntity : all) {
             System.out.println(messageEntity.getCreateAt());
             System.out.println(messageEntity.getUserFrom());

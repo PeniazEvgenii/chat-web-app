@@ -1,10 +1,8 @@
 package by.it_academy.jd2.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -30,9 +28,9 @@ public class MessageEntity {
     private String body;
 
     @Column(nullable = false)
-    private LocalDateTime updateAt;
+    private OffsetDateTime updateAt;
 
-    private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String body, LocalDateTime updateAt) {
+    private MessageEntity(UUID id, OffsetDateTime createAt, UserEntity userFrom, UserEntity userTo, String body, OffsetDateTime updateAt) {
         this.id = id;
         this.createAt = createAt;
         this.userFrom = userFrom;
@@ -65,7 +63,7 @@ public class MessageEntity {
         return id;
     }
 
-    public LocalDateTime getUpdateAt() {
+    public OffsetDateTime getUpdateAt() {
         return updateAt;
     }
 
@@ -87,7 +85,7 @@ public class MessageEntity {
         private UserEntity userFrom;
         private UserEntity userTo;
         private String body;
-        private LocalDateTime updateAt;
+        private OffsetDateTime updateAt;
 
         private MessageEntityBuilder() {
         }
@@ -117,7 +115,7 @@ public class MessageEntity {
             return this;
         }
 
-        public MessageEntityBuilder setUpdateAt(LocalDateTime updateAt) {
+        public MessageEntityBuilder setUpdateAt(OffsetDateTime updateAt) {
             this.updateAt = updateAt;
             return this;
         }

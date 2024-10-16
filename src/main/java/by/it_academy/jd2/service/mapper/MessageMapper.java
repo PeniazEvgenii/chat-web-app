@@ -1,10 +1,12 @@
 package by.it_academy.jd2.service.mapper;
 
+import by.it_academy.jd2.service.dto.MessageDateFormat;
 import by.it_academy.jd2.service.dto.MessageReadDto;
 import by.it_academy.jd2.service.dto.MessageWithZoneDto;
 import by.it_academy.jd2.dao.entity.MessageEntity;
 import by.it_academy.jd2.service.mapper.api.IMessageMapper;
 import by.it_academy.jd2.service.mapper.api.IUserMapper;
+import by.it_academy.jd2.util.DateFormatUtil;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -34,9 +36,20 @@ public class MessageMapper implements IMessageMapper {
                 .setId(messageReadDto.getId())
                 .setBody(messageReadDto.getBody())
                 .setCreateAt(convertOffsetToLocalDateTime(messageReadDto.getCreateAt(), zoneId))
-                .setUpdateAt(messageReadDto.getUpdateAt())
+                .setUpdateAt(convertOffsetToLocalDateTime(messageReadDto.getUpdateAt(), zoneId))
                 .setUserTo(messageReadDto.getUserTo())
                 .setUserFrom(messageReadDto.getUserFrom())
+                .build();
+    }
+
+    public MessageDateFormat mapFrom(MessageWithZoneDto messageWithZoneDto) {
+        return MessageDateFormat.builder()
+                .setId(messageWithZoneDto.getId())
+                .setBody(messageWithZoneDto.getBody())
+                .setCreateAt(DateFormatUtil.getFormatStringDateTime(messageWithZoneDto.getCreateAt()))
+                .setUpdateAt(DateFormatUtil.getFormatStringDateTime(messageWithZoneDto.getUpdateAt()))
+                .setUserTo(messageWithZoneDto.getUserTo())
+                .setUserFrom(messageWithZoneDto.getUserFrom())
                 .build();
     }
 

@@ -56,7 +56,6 @@ public class MessageDao implements IMessageDao {
         }
     }
 
-
     public List<MessageEntity> getByUserTo(UUID userIdTo) {
         try (Connection connection = connectionManager.open();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_USER_ID_TO_SQL)) {
@@ -147,7 +146,7 @@ public class MessageDao implements IMessageDao {
                         userDao.getById(resultSet.getObject("user_id_to", UUID.class),
                                 connection).orElseThrow(() -> new IllegalStateException("Пользователь не найден")))
                 .setBody(resultSet.getObject("body", String.class))
-                .setUpdateAt(resultSet.getObject("update_at", LocalDateTime.class))
+                .setUpdateAt(resultSet.getObject("update_at", OffsetDateTime.class))
                 .build();
     }
 }

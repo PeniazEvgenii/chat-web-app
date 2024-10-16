@@ -1,5 +1,6 @@
 package by.it_academy.jd2.service.mapper.api;
 
+import by.it_academy.jd2.service.dto.MessageDateFormat;
 import by.it_academy.jd2.service.dto.MessageReadDto;
 import by.it_academy.jd2.service.dto.MessageWithZoneDto;
 import by.it_academy.jd2.dao.entity.MessageEntity;
@@ -12,5 +13,6 @@ public interface IMessageMapper {
 
     MessageWithZoneDto mapFrom(MessageReadDto messageReadDto, ZoneId zoneId);
 
+    MessageDateFormat mapFrom(MessageWithZoneDto messageWithZoneDto);
 
 }

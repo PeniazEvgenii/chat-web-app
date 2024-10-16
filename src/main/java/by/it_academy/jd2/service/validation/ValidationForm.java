@@ -8,6 +8,7 @@ import by.it_academy.jd2.service.validation.api.IValidateForm;
 public class ValidationForm implements IValidateForm {
     private static final int MAX_LENGTH_LOGIN = 64;
     private static final int MAX_LENGTH_PASSWORD = 64;
+    private static final int MIN_LENGTH_PASSWORD = 4;
 
     public ValidationForm() {}
 
@@ -24,14 +25,27 @@ public class ValidationForm implements IValidateForm {
                     "Пользователь с таким логином уже существует"));
         }
 
-        if(userCreateDto.getLogin().isBlank()) {
+        String password = userCreateDto.getPassword();
+        String login = userCreateDto.getLogin();
+
+        if(login.isBlank()) {
             validationResult.addError(new Error("invalid_login","Login is empty or consists only of spaces",
                     "Логин не заполнен либо состоит только из пробелов"));
         }
 
-        if(userCreateDto.getPassword().isBlank()) {
+        if(password.isBlank()) {
             validationResult.addError(new Error("invalid_password","Password is empty or consists only of spaces",
                     "Пароль не заполнен либо состоит только из пробелов"));
+        }
+
+        if(password.length() > MAX_LENGTH_PASSWORD) {
+            validationResult.addError(new Error("invalid_length_password","Password length is no more than 64 characters",
+                    "Длина пароля не должна превышать 64 символа"));
+        }
+
+        if(password.length() < MIN_LENGTH_PASSWORD) {
+            validationResult.addError(new Error("invalid_min_length_password","Password length is no less than 4 characters",
+                    "Длина пароля должна быть не менее 4 символов"));
         }
 
         if(userCreateDto.getName().isBlank()) {
@@ -44,18 +58,11 @@ public class ValidationForm implements IValidateForm {
                     "Дата рождения некорректна"));
         }
 
-        if(userCreateDto.getLogin().length() > MAX_LENGTH_LOGIN) {
+        if(login.length() > MAX_LENGTH_LOGIN) {
             validationResult.addError(new Error("invalid_length_login","Login length is no more than 64 characters",
                     "Длина логина должна превышать 64 символа"));
         }
 
-        if(userCreateDto.getPassword().length() > MAX_LENGTH_PASSWORD) {
-            validationResult.addError(new Error("invalid_length_password","Password length is no more than 64 characters",
-                    "Длина пароля должна превышать 64 символа"));
-        }
-
         return validationResult;
     }
-
-
 }

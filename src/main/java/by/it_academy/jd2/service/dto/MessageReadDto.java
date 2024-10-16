@@ -1,7 +1,6 @@
 package by.it_academy.jd2.service.dto;
 
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -11,9 +10,9 @@ public class MessageReadDto {
     private final UserReadDto userFrom;
     private final UserReadDto userTo;
     private final String body;
-    private final LocalDateTime updateAt;
+    private final OffsetDateTime updateAt;
 
-    public MessageReadDto(UUID id, OffsetDateTime createAt, UserReadDto userFrom, UserReadDto userTo, String body, LocalDateTime updateAt) {
+    public MessageReadDto(UUID id, OffsetDateTime createAt, UserReadDto userFrom, UserReadDto userTo, String body, OffsetDateTime updateAt) {
         this.createAt = createAt;
         this.userFrom = userFrom;
         this.userTo = userTo;
@@ -46,7 +45,7 @@ public class MessageReadDto {
         return body;
     }
 
-    public LocalDateTime getUpdateAt() {
+    public OffsetDateTime getUpdateAt() {
         return updateAt;
     }
 
@@ -56,7 +55,7 @@ public class MessageReadDto {
         private UserReadDto userFrom;
         private UserReadDto userTo;
         private String body;
-        private LocalDateTime updateAt;
+        private OffsetDateTime updateAt;
 
         private MessageReadDtoBuilder() {
         }
@@ -86,7 +85,7 @@ public class MessageReadDto {
             return this;
         }
 
-        public MessageReadDtoBuilder setUpdateAt(LocalDateTime updateAt) {
+        public MessageReadDtoBuilder setUpdateAt(OffsetDateTime updateAt) {
             this.updateAt = updateAt;
             return this;
         }

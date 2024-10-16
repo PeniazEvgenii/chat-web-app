@@ -15,7 +15,6 @@ import by.it_academy.jd2.service.validation.ValidationResult;
 import by.it_academy.jd2.service.validation.api.IValidateMessage;
 import by.it_academy.jd2.service.validation.exception.ValidationException;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -70,7 +69,7 @@ public class MessageService implements IMessageService {
         return MessageEntity.builder()
                 .setId(UUID.randomUUID())
                 .setCreateAt(OffsetDateTime.now())
-                .setUpdateAt(LocalDateTime.now())
+                .setUpdateAt(OffsetDateTime.now())
                 .setBody(messageCreateDto.getBody())
                 .setUserTo(userEntity)
                 .setUserFrom(userService.getEntityByLogin

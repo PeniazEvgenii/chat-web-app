@@ -14,7 +14,7 @@ public class ValidationMessage implements IValidateMessage {
 
         String body = message.getBody();
         if(body != null && body.isBlank()) {
-            validationResult.addError(new Error("not_message", "Message is empty", "пустое сообщение"));
+            validationResult.addError(new Error("not_message", "Message is empty", "Вы отправляете пустое сообщение"));
         }
         return validationResult;
     }
