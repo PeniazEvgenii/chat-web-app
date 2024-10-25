@@ -38,7 +38,7 @@ public class UserService implements IUserService {
             throw new ValidationException(validationResult.getErrors());
         }
         UserEntity userEntity = userMapper.mapDtoToEntity(userCreateDto);
-        return userDao.create(userEntity);   //надо на сущность поменять
+        return userDao.create(userEntity);
     }
 
     @Override
