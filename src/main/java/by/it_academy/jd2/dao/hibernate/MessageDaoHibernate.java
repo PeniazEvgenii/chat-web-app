@@ -1,4 +1,4 @@
-package by.it_academy.jd2.dao.connection.hibernate;
+package by.it_academy.jd2.dao.hibernate;
 
 import by.it_academy.jd2.dao.api.IMessageDao;
 import by.it_academy.jd2.dao.connection.api.IEntityManagerService;

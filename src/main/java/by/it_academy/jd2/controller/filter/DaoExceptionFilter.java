@@ -17,7 +17,7 @@ public class DaoExceptionFilter implements Filter {
         } catch (DaoException e) {
             HttpServletResponse resp = (HttpServletResponse) response;
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Произошла ошибка при работе с базой данных. " + e.getMessage());
+                    "Произошла ошибка на сервере. Обратитесь к администратору. " + e.getMessage());
         }
     }
 }

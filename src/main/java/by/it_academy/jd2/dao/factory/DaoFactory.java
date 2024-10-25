@@ -5,9 +5,9 @@ import by.it_academy.jd2.dao.UserDao;
 import by.it_academy.jd2.dao.api.IMessageDao;
 import by.it_academy.jd2.dao.api.IUserDao;
 import by.it_academy.jd2.dao.connection.factory.ConnectionManagerFactory;
-import by.it_academy.jd2.dao.connection.hibernate.MessageDaoHibernate;
-import by.it_academy.jd2.dao.connection.hibernate.UserDaoHibernate;
-import by.it_academy.jd2.dao.connection.hibernate.factory.EntityManagerServiceFactory;
+import by.it_academy.jd2.dao.hibernate.MessageDaoHibernate;
+import by.it_academy.jd2.dao.hibernate.UserDaoHibernate;
+import by.it_academy.jd2.dao.hibernate.factory.EntityManagerServiceFactory;
 
 public class DaoFactory {
     private static final IUserDao userDao = new UserDao(ConnectionManagerFactory.getInstance());

@@ -3,7 +3,7 @@ package by.it_academy.jd2.controller.listeners;
 import by.it_academy.jd2.dao.connection.api.IConnectionManager;
 import by.it_academy.jd2.dao.connection.api.IEntityManagerService;
 import by.it_academy.jd2.dao.connection.factory.ConnectionManagerFactory;
-import by.it_academy.jd2.dao.connection.hibernate.factory.EntityManagerServiceFactory;
+import by.it_academy.jd2.dao.hibernate.factory.EntityManagerServiceFactory;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 

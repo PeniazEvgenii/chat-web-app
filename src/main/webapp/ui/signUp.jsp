@@ -6,6 +6,9 @@
     <%@ include file="header.jsp" %>
 </head>
 <body>
+     <a href="${pageContext.request.contextPath}/"> 
+        <button type="button" style="Margin: 0 0px; width: 10%;">Стартовая страница</button>
+     </a>
 
     <h2>Регистрация пользователя:</h2>
     <form action="${pageContext.request.contextPath}/api/user" method="post">

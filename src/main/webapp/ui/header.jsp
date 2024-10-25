@@ -27,7 +27,19 @@
     	    padding: 8px 14px;
     	    width: 160px;
         }
-        </style>
+        tr:nth-child(odd) {
+          background-color: #f6f6f6;
+        }
+        th, td {
+          text-align: left;
+          padding: 5px;
+          font-size: 18px;
+        }
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+    </style>
 </head>
 
 <body>

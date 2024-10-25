@@ -4,22 +4,6 @@
 <head>
     <title>Statistics</title>
     <%@ include file="../header.jsp" %>
-
-    <style>
-        tr:nth-child(odd) {
-          background-color: #f6f6f6;
-        }
-        td {
-          text-align: left;
-          padding: 5px;
-          font-size: 18px;
-        }
-        table {
-          border-collapse: collapse;
-          width: 50%;
-        }
-    </style>
-
 </head>
 <body>
     <%@ include file="../LogOut.jsp" %>

@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 
     @SneakyThrows
     private void loginSuccess(HttpServletRequest req, HttpServletResponse resp, UserReadDto userReadDto) {
-        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userReadDto);          //можно сделать проверкку на уже установленный в сессии user
+        req.getSession().setAttribute(SESSION_ATTRIBUTE_USER, userReadDto);
         resp.sendRedirect(req.getContextPath() + START_SERVLET);
     }
 
